@@ -1,0 +1,187 @@
+@import '../../styles/main.scss';
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 1136px;
+  margin: 0 auto;
+
+  &__title {
+    font-family: 'Mont-Bold';
+    font-weight: 800;
+    font-size: 32px;
+
+    color: $colorPrimary;
+    line-height: 41px;
+    text-transform: uppercase;
+
+    margin-bottom: 50px;
+  }
+
+  &__arrow {
+    margin-bottom: 120px;
+
+    &_item {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-bottom: 5px solid #25c57d;
+      border-right: 5px solid #b3c816;
+      transform: rotate(45deg);
+      margin: -16px;
+      animation: arrow-down 2s infinite;
+
+      &:nth-child(2){
+        animation-delay: -0.2s;
+      }
+
+      &:nth-child(3){
+        animation-delay: -0.4s;
+    }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 64px;
+    margin: 0 auto;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 24px;
+  }
+
+  &__subtitle {
+    font-family: 'Mont-Semi';
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 26px;
+
+    color: $colorPrimary;
+    margin-bottom: 4px;
+  }
+
+  &__image {
+    height: 400px;
+    width: 800px;
+  }
+
+  &__img1 {
+    background-image: url('../../assets/images/mac.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__img2 {
+    background-image: url('../../assets/images/iphone.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__img3 {
+    background-image: url('../../assets/images/ipad.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__img4 {
+    background-image: url('../../assets/images/watch.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+
+    color: #313133;
+    min-width: 200px;
+    min-height: 50px;
+
+    background: #4FD1C5;
+    background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+
+    &::before {
+      content: '';
+      border-radius: 1000px;
+      min-width: calc(300px + 12px);
+      min-height: calc(60px + 12px);
+      border: 6px solid #00FFCB;
+      box-shadow: 0 0 60px rgba(0,255,203,.64);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: all .3s ease-in-out 0s;
+    }
+
+    &::after {
+      content: '';
+      width: 30px; height: 30px;
+      border-radius: 100%;
+      border: 6px solid #00FFCB;
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ring 1.5s infinite;
+    }
+
+    &:hover {
+      color: #313133;
+      transform: translateY(-6px);
+    }
+  }
+}
+
+@keyframes arrow-down {
+  0%{
+      opacity: 0;
+      transform: rotate(45deg) translate(-20px,-20px);
+  }
+  50%{
+      opacity: 1;
+  }
+  100%{
+      opacity: 0;
+      transform: rotate(45deg) translate(20px,20px);
+  }
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}

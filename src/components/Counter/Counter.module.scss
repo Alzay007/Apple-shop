@@ -1,0 +1,20 @@
+@import '../../styles/main.scss';
+
+.counter {
+  min-width: 22px;
+  line-height: 0px;
+  font-size: 12px;
+  color: $colorWhite;
+  background-color: #eb5757;
+  border-radius: 90%;
+  border: 2px solid;
+
+  cursor: default;
+
+  &__text {
+    display: block;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    text-align: center;
+  }
+}

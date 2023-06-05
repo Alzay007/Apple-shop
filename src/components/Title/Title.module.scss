@@ -1,0 +1,37 @@
+@import '../../styles/main.scss';
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 24px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__arrow {
+    margin-right: 10px;
+    margin-left: 5px;
+    height: 10px;
+  }
+
+  &__text {
+    font-family: 'Mont';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: $colorSecondary;
+  }
+
+  &__headline {
+    font-family: 'Mont-Bold';
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 56px;
+    color: $colorPrimary;
+  }
+}

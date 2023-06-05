@@ -1,0 +1,115 @@
+@import '../../styles/main.scss';
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  position: fixed;
+  z-index: 1;
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+
+    width: 500px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 25px;
+
+    @include onMobile {
+      width: 250px;
+      height: 400px;
+    }
+
+    &_body {
+      flex: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.7rem;
+      text-align: center;
+    }
+
+    &_footer {
+      flex: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &_button {
+      width: 150px;
+      height: 45px;
+      margin: 10px;
+      border: none;
+      background-color: #6ac258;
+      color: white;
+      border-radius: 8px;
+      font-size: 20px;
+      transition: box-shadow 0.3s;
+      cursor: pointer;
+      @include onMobile {
+        font-size: 15px;
+        width: 130px;
+      }
+
+      &:hover {
+        box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+      }
+    }
+
+    &_title {
+      display: inline-block;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+
+  &_close_container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &_close {
+    width: 25px;
+    height: 25px;
+    background-image: url('../../assets/icons/close.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    @include onMobile {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &_circle {
+    width: 150px;
+    height: 150px;
+    @include onMobile {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &_text {
+    font-family: 'Mont';
+    color: $colorPrimary;
+    font-size: 25px;
+    line-height: 30px;
+
+    @include onMobile {
+      font-size: 20px;
+    }
+  }
+}

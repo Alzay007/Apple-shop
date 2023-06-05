@@ -1,0 +1,171 @@
+@import '../../styles/main.scss';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 440px;
+  width: 288px;
+  border: 1px solid $colorElements;
+
+  margin-bottom: 40px;
+  padding: 32px;
+  transition: box-shadow 0.3s;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include onTablet {
+    height: 506px;
+
+    &:nth-last-child(-n + 2) {
+      margin-bottom: 0;
+    }
+  }
+
+  @include onDesktop {
+    width: 272px;
+
+    &:nth-last-child(-n + 4) {
+      margin-bottom: 0;
+    }
+  }
+
+  &_logo {
+    height: 130px;
+    width: 223px;
+    object-fit: contain;
+
+    margin-bottom: 24px;
+
+    @include onDesktop {
+      height: 208px;
+      width: 196px;
+    }
+
+    @include onTablet {
+      height: 208px;
+      width: 196px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+  }
+
+  &_title {
+    font-family: 'Mont';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    min-height: 42px;
+
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 8px;
+  }
+
+  &_price {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid $colorElements;
+    margin-bottom: 8px;
+  }
+
+  &_newPrice {
+    font-family: 'Mont-Bold';
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 140%;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    color: $colorPrimary;
+  }
+
+  &_oldPrice {
+    font-family: 'Mont';
+    color: $colorSecondary;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    text-decoration-line: line-through;
+    margin-bottom: 9.5px;
+  }
+
+  &_characteristics {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    gap: 8px;
+  }
+
+  &_description {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    font-family: 'Mont';
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  &_text {
+    color: $colorSecondary;
+  }
+
+  &_rating {
+    display: flex;
+    gap: 8px;
+  }
+
+  &_star {
+    background-image: url('../../assets/icons/star.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    width: 15px;
+    height: 15px;
+  }
+
+  &_value {
+    color: $colorPrimary;
+  }
+
+  &_checkout {
+    background: $colorPrimary;
+    color: $colorWhite;
+    height: 40px;
+    width: 80%;
+
+    margin: 0 auto;
+    transition: box-shadow 0.3s;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+    }
+  }
+
+  &_uncheckout {
+    background: $colorWhite;
+    color: #27ae60;
+    border: 1px solid $colorElements;
+  }
+
+  &_buttons {
+    margin-top: 16px;
+    display: flex;
+    width: 100%;
+  }
+}

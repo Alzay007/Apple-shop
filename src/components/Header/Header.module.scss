@@ -1,0 +1,147 @@
+@import '../../styles/main.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  height: 64px;
+  padding-left: 32px;
+
+  background-image: $backgroundHeader;
+  
+
+  box-shadow: 0px 1px 0px $colorElements;
+
+  &__logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__link {
+    display: flex;
+    position: relative;
+    margin-right: 64px;
+    color: $colorSecondary;
+
+    font-family: 'Mont', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    transition: color 0.3s;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: $colorPrimary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 26.5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $colorPrimary;
+      }
+    }
+
+    &:focus {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 26.5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $colorPrimary;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+
+    box-shadow: 0 0 0 1px $colorElements;
+  }
+
+  &__login {
+    background-image: url(../../assets/icons/login.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: 42px;
+    width: 42px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__cart {
+    background-image: url(../../assets/icons/bag.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    height: 38px;
+    width: 38px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__heart {
+    position: absolute;
+    bottom: 38px;
+    right: 72px;
+
+    z-index: 1;
+  }
+
+  &__signIn {
+    position: absolute;
+    bottom: 42px;
+    right: 0px;
+
+    width: 20px;
+    height: 20px;
+    background-image: url('../../assets/icons/signin.png');
+    background-size: contain;
+
+    z-index: 1;
+  }
+}

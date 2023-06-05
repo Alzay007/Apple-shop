@@ -1,0 +1,16 @@
+@import '../../styles/main.scss';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+
+  max-width: 1136px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include onTablet {
+    gap: 16px;
+  }
+}
