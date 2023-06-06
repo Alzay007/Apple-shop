@@ -3,9 +3,10 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+
 import { ROUTER } from '../Header';
-import { useAppDispatch, useAppSelector } from '../../features/hooks/hooks';
-import { closeSnack } from '../../features/reducers/snackSlice';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { closeSnack } from 'features/reducers/snackSlice';
 
 export const AuthSnackbar = () => {
   const dispatch = useAppDispatch();

@@ -10,6 +10,7 @@ export const AccountPage = () => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
+    localStorage.removeItem('user');
     dispatch(logoutUser());
     navigate('/');
   };

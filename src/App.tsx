@@ -22,6 +22,7 @@ import {
 } from './pages';
 
 import './App.scss';
+import { setUser } from './features/reducers/userSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -33,6 +34,19 @@ function App() {
 
     if (idArray) {
       dispatch(addItems(JSON.parse(idArray)));
+    }
+
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      const user = JSON.parse(savedUser);
+
+      dispatch(
+        setUser({
+          email: user.email,
+          token: user.refreshToken,
+          id: user.uid,
+        }),
+      );
     }
   }, []);
 

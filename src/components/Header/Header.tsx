@@ -54,7 +54,7 @@ export const Header = () => {
       </nav>
 
       <div className={styles.header__icons}>
-        {items.length > 0 && (
+        {isAuth && items.length > 0 && (
           <div className={styles.header__heart}>
             <Counter count={items.length} />
           </div>
