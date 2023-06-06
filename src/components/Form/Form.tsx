@@ -1,5 +1,15 @@
+import {
+  Button,
+  FormGroup,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
-import { Button, FormGroup, TextField } from '@mui/material';
+
+import useInput from 'hooks/useInput';
+
 import styles from './Form.module.scss';
 
 interface Props {
@@ -8,8 +18,13 @@ interface Props {
 }
 
 export const Form: React.FC<Props> = ({ action, handleClick }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const email = useInput('');
+  const password = useInput('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <FormGroup className={styles.form}>
@@ -18,23 +33,30 @@ export const Form: React.FC<Props> = ({ action, handleClick }) => {
         name="email"
         placeholder="Email"
         autoComplete="off"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        {...email}
       />
 
       <TextField
         label={'Password'}
         name="password"
-        type="password"
+        type={showPassword ? 'text' : 'password'}
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        {...password}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       />
 
       <Button
         className={styles.form__btn}
         variant={'outlined'}
-        onClick={() => handleClick(email, password)}
+        onClick={() => handleClick(email.value, password.value)}
       >
         {action}
       </Button>

@@ -2,8 +2,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { SortType } from 'types/SortType';
+
 import styles from './SortField.module.scss';
-import { SortType } from '../../types/SortType';
 
 interface Props {
   sortBy: SortType;
@@ -13,7 +14,7 @@ interface Props {
 export const SortField: React.FC<Props> = ({ sortBy, handleStatus }) => {
   return (
     <div className={styles.field}>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <FormControl sx={{ m: 1, minWidth: 130 }} size="small">
         <InputLabel id="demo-select-small">Sort By</InputLabel>
         <Select
           labelId="demo-select-small"

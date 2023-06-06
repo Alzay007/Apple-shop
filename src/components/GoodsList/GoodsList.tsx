@@ -1,5 +1,6 @@
-import { Product } from '../../types/Product';
+import { Product } from 'types/Product';
 import { Card } from '../Card';
+
 import styles from './GoodsList.module.scss';
 
 interface Props {
