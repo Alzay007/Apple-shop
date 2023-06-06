@@ -4,6 +4,7 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  FormHelperText,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
@@ -21,6 +22,22 @@ export const Form: React.FC<Props> = ({ action, handleClick }) => {
   const email = useInput('');
   const password = useInput('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleButtonClick = () => {
+    const isEmailValid = validateEmail(email.value);
+
+    setIsEmailValid(isEmailValid);
+
+    if (isEmailValid) {
+      handleClick(email.value, password.value);
+    }
+  };
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -35,6 +52,9 @@ export const Form: React.FC<Props> = ({ action, handleClick }) => {
         autoComplete="off"
         {...email}
       />
+      {!isEmailValid && (
+        <FormHelperText error>Invalid email format</FormHelperText>
+      )}
 
       <TextField
         label={'Password'}
@@ -56,7 +76,7 @@ export const Form: React.FC<Props> = ({ action, handleClick }) => {
       <Button
         className={styles.form__btn}
         variant={'outlined'}
-        onClick={() => handleClick(email.value, password.value)}
+        onClick={handleButtonClick}
       >
         {action}
       </Button>

@@ -6,3 +6,4 @@ export * from './LoginPage';
 export * from './NotFoundPage';
 export * from './ProductDetailPage';
 export * from './SignUpPage';
+export * from './DevelopmentPage';

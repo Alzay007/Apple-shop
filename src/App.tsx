@@ -18,10 +18,10 @@ import {
   GoodsPage,
   ProductDetailPage,
   SignUpPage,
+  DevelopmentPage,
 } from './pages';
 
 import './App.scss';
-import { DevelopmentPage } from './pages/DevelopmentPage';
 
 function App() {
   const dispatch = useAppDispatch();
