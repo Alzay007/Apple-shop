@@ -21,6 +21,7 @@ import {
 } from './pages';
 
 import './App.scss';
+import { DevelopmentPage } from './pages/DevelopmentPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -69,6 +70,8 @@ function App() {
             path={ROUTER.productDetalePage}
             element={<ProductDetailPage />}
           />
+          <Route path={ROUTER.support} element={<DevelopmentPage />} />
+          <Route path={ROUTER.contacts} element={<DevelopmentPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

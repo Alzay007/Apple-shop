@@ -15,6 +15,8 @@ export const ROUTER = {
   login: '/login',
   signUp: '/registration',
   account: '/account',
+  support: '/support',
+  contacts: '/contacts',
   productDetalePage: '/goods/:itemId',
 };
 

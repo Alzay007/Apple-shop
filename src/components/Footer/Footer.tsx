@@ -23,7 +23,11 @@ export const Footer = () => {
           <NavLink to="/Contacts" className={styles.footer__item}>
             Contacts
           </NavLink>
-          <NavLink to="/About" className={styles.footer__item}>
+          <NavLink
+            to="https://github.com/Alzay007"
+            target="_blank"
+            className={styles.footer__item}
+          >
             About US
           </NavLink>
         </div>

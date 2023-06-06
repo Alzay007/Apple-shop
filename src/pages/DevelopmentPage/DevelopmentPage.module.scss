@@ -1,0 +1,13 @@
+@import '../../styles/main.scss';
+
+.container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image {
+  max-height: 600px;
+  max-width: 600px;
+}
