@@ -1,14 +1,14 @@
+import classNames from 'classnames';
 import { clearItems } from 'features/reducers/cartSlice';
-import { useAppDispatch } from '../../features/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+
 import styles from './CartCheckout.module.scss';
 
-interface Props {
-  sum: number;
-  count: number;
-}
-
-export const CartCheckout: React.FC<Props> = ({ sum, count }) => {
+export const CartCheckout = () => {
   const dispatch = useAppDispatch();
+  const { items, sumOfItems } = useAppSelector((state) => state.cartReducer);
+
+  const sum = Object.values(sumOfItems).reduce((a, b) => a + b, 0);
 
   const handleCheckout = () => {
     dispatch(clearItems());
@@ -17,9 +17,15 @@ export const CartCheckout: React.FC<Props> = ({ sum, count }) => {
   return (
     <div className={styles.checkout}>
       <h3 className={styles.checkout__total}>${sum}</h3>
-      <p className={styles.checkout__count}>Total for {count} items</p>
+      <p className={styles.checkout__count}>Total for {items.length} items</p>
 
-      <button className={styles.checkout__button} onClick={handleCheckout}>
+      <button
+        className={classNames(styles.checkout__button, {
+          [styles.checkout__button_disabled]: items.length < 1
+        })}
+        onClick={handleCheckout}
+        disabled={items.length < 1}
+      >
         Checkout
       </button>
     </div>

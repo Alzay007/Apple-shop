@@ -1,11 +1,22 @@
+import { useEffect } from 'react';
 import deleteCross from '../../assets/icons/cross.svg';
 import plus from '../../assets/icons/plus.svg';
 import minus from '../../assets/icons/minus.svg';
-import { useAppDispatch } from 'features/hooks/hooks';
-import { removeItem } from 'features/reducers/cartSlice';
+import {
+  selectItems,
+  useAppDispatch,
+  useAppSelector
+} from 'features/hooks/hooks';
+import {
+  decrementCount,
+  incrementCount,
+  removeItem,
+  setSumOfItems
+} from 'features/reducers/cartSlice';
 import { BASE_URL } from 'features/reducers/thunk';
 
 import styles from './CartItem.module.scss';
+import classNames from 'classnames';
 
 interface Props {
   name: string;
@@ -17,6 +28,21 @@ interface Props {
 export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
   const goods = JSON.parse(localStorage.getItem('id') || '{}');
   const dispatch = useAppDispatch();
+  const items = useAppSelector(selectItems);
+
+  const count = items.filter((item) => item === id).length;
+
+  useEffect(() => {
+    dispatch(setSumOfItems({ id, price, count }));
+  }, []);
+
+  const handleCountUp = () => {
+    dispatch(incrementCount({ id, price, count }));
+  };
+
+  const handleCountDown = () => {
+    dispatch(decrementCount({ id, price, count }));
+  };
 
   const handleRemoveItem = () => {
     goods.splice(goods.indexOf(id), 1);
@@ -43,14 +69,23 @@ export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
       </div>
 
       <div className={styles.cartItem__count}>
-        <button className={styles.cartItem__count_button}>
+        <button
+          className={classNames(styles.cartItem__count_button, {
+            [styles.cartItem__count_button_disabled]: count === 1
+          })}
+          onClick={handleCountDown}
+          disabled={count === 1}
+        >
           <img src={minus} className={styles.cartItem__count_button_symbol} />
         </button>
-        <div className={styles.cartItem__count_number}>{1}</div>
-        <button className={styles.cartItem__count_button}>
+        <div className={styles.cartItem__count_number}>{count}</div>
+        <button
+          className={styles.cartItem__count_button}
+          onClick={handleCountUp}
+        >
           <img src={plus} className={styles.cartItem__count_button_symbol} />
         </button>
-        <div className={styles.cartItem__price}>{price}$</div>
+        <div className={styles.cartItem__price}>{count * price}$</div>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import empty from 'assets/icons/emptyCart.svg';
 
 export const CartPage = () => {
   const data = JSON.parse(localStorage.getItem('id') || '{}');
-  const { isModalOpen } = useAppSelector((state) => state.cartReducer);
+  const { items, isModalOpen } = useAppSelector((state) => state.cartReducer);
   const { goods } = useAppSelector((state) => state.goodsReducer);
   const { isAuth } = useAuth();
 
@@ -21,12 +21,8 @@ export const CartPage = () => {
   }, []);
 
   const visibleList = useMemo(() => {
-    return goods.filter((phone: Product) => data?.includes(phone.id));
-  }, [goods]);
-
-  const sumOfprices = visibleList
-    .map((el) => el.fullPrice)
-    .reduce((a, b) => a + b, 0);
+    return goods.filter((phone: Product) => items.includes(phone.id));
+  }, [items, goods]);
 
   return (
     <>
@@ -35,7 +31,7 @@ export const CartPage = () => {
       <div className={styles.cart}>
         <Title title={'Cart'} />
 
-        {data.length < 1 && isAuth ? (
+        {items.length < 1 && isAuth ? (
           <div className={styles.cart__empty}>
             <img src={empty} alt="arrow" className={styles.cart__empty_img} />
             <span className={styles.cart__empty_text}>cart is empty</span>
@@ -47,7 +43,7 @@ export const CartPage = () => {
                 {data.length > 0 ? (
                   <>
                     <CartList cartList={visibleList} />
-                    <CartCheckout sum={sumOfprices} count={data.length} />
+                    <CartCheckout />
                   </>
                 ) : (
                   <div className={styles.cart__empty}>
