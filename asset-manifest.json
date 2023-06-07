@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.639627b0.css",
+    "main.js": "/static/js/main.8d86f2b4.js",
+    "static/media/iphone.png": "/static/media/iphone.2871ec8a858d4e76c0a3.png",
+    "static/media/image2.png": "/static/media/image2.887e903586123fef689f.png",
+    "static/media/ipad.png": "/static/media/ipad.6a6f59bb0f2be9a344af.png",
+    "static/media/image4.png": "/static/media/image4.ea20719576a44e70f16f.png",
+    "static/media/watch.png": "/static/media/watch.8e4ac759adcc3da8af67.png",
+    "static/media/image3.png": "/static/media/image3.ea41728a4164840d8bad.png",
+    "static/media/image1.jpg": "/static/media/image1.ed5de6a9ad129089bc5e.jpg",
+    "static/media/mac.png": "/static/media/mac.56bf49ec3ef2c2ceeaef.png",
+    "static/media/coming.png": "/static/media/coming.6b908c484cfb1226cec1.png",
+    "static/media/signin.png": "/static/media/signin.2e1001f79a91776de835.png",
+    "static/media/succ.png": "/static/media/succ.352ded6746b5c38912f9.png",
+    "static/media/google.png": "/static/media/google.0590aaf0fe36e23dcc8c.png",
+    "static/media/star.png": "/static/media/star.ef965c1f2855898766ea.png",
+    "static/media/error.png": "/static/media/error.e4803bbf3b19afcfc078.png",
+    "static/media/emptyCart.svg": "/static/media/emptyCart.839afd8054e11f36b945252a27de6185.svg",
+    "static/media/cross.svg": "/static/media/cross.adff151dead090d2bb35af0399d6582c.svg",
+    "static/media/plus.svg": "/static/media/plus.1360842dc46a5a04000d6466314f511f.svg",
+    "index.html": "/index.html",
+    "static/media/banner-button-next.svg": "/static/media/banner-button-next.becf9c928cb127ddb616.svg",
+    "static/media/greyArrowLeft.svg": "/static/media/greyArrowLeft.e653405303c0409c73fb79f48f70a002.svg",
+    "static/media/banner-button-prev.svg": "/static/media/banner-button-prev.b18d031caaaea7e6e0c8.svg",
+    "static/media/arrow.svg": "/static/media/arrow.7bc120797000c4ef90e29c5981a99d64.svg",
+    "static/media/bag.svg": "/static/media/bag.6b2c34f9f7a20bf5f560.svg",
+    "static/media/minus.svg": "/static/media/minus.aae6901966bcc1d13c117dd760b92e23.svg",
+    "static/media/login.svg": "/static/media/login.9d5ed61ed0ef364de23f.svg",
+    "main.639627b0.css.map": "/static/css/main.639627b0.css.map",
+    "main.8d86f2b4.js.map": "/static/js/main.8d86f2b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.639627b0.css",
+    "static/js/main.8d86f2b4.js"
+  ]
+}
