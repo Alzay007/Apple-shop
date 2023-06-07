@@ -1,8 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../assets/icons/logo.png';
-import arrow from '../../assets/icons/arrow.svg';
-import styles from './Footer.module.scss';
 import { animateScroll as scroll } from 'react-scroll';
+
+import logo from 'assets/icons/logo.png';
+import arrow from 'assets/icons/arrow.svg';
+import styles from './Footer.module.scss';
 
 export const Footer = () => {
   const handleToTheTop = () => {

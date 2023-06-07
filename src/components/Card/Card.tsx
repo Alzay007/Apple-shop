@@ -14,20 +14,22 @@ interface Props {
   product: Product;
 }
 
-export const Card: React.FC<Props> = ({ product }) => {
-  const { name, fullPrice, capacity, screen, rating, image } = product;
+export const Card: React.FC<Props> = ({
+  product: { name, fullPrice, capacity, screen, rating, image, id, itemId }
+}) => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAuth();
 
   const { items } = useAppSelector((state) => state.cartReducer);
 
-  const isCardInArray = items.includes(product.id);
+  const itemsSet = new Set(items);
+  const isCardInArray = itemsSet.has(id);
 
   const handleSetCardInData = () => {
     if (!isCardInArray) {
-      dispatch(addItem(product.id));
+      dispatch(addItem(id));
     } else {
-      dispatch(removeItem(product.id));
+      dispatch(removeItem(id));
     }
   };
 
@@ -37,7 +39,7 @@ export const Card: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={styles.card}>
-      <NavLink to={`/goods/${product.itemId}`}>
+      <NavLink to={`/goods/${itemId}`}>
         <img
           src={`${BASE_URL}/${image}`}
           alt="card-logo"
@@ -69,7 +71,7 @@ export const Card: React.FC<Props> = ({ product }) => {
       <div className={styles.card_buttons}>
         <button
           className={classNames(styles.card_checkout, {
-            [styles.card_uncheckout]: isCardInArray,
+            [styles.card_uncheckout]: isCardInArray
           })}
           onClick={isAuth ? handleSetCardInData : handleSetOpenSnack}
         >

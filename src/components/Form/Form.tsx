@@ -4,12 +4,13 @@ import {
   TextField,
   InputAdornment,
   IconButton,
-  FormHelperText,
+  FormHelperText
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 
 import useInput from 'hooks/useInput';
+import { validateEmail } from 'helpers/validateFunc';
 
 import styles from './Form.module.scss';
 
@@ -23,11 +24,6 @@ export const Form: React.FC<Props> = ({ action, handleClick }) => {
   const password = useInput('');
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   const handleButtonClick = () => {
     const isEmailValid = validateEmail(email.value);
@@ -69,7 +65,7 @@ export const Form: React.FC<Props> = ({ action, handleClick }) => {
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
-          ),
+          )
         }}
       />
 

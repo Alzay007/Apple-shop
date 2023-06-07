@@ -1,9 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
-import styles from './Header.module.scss';
-import logo from '../../assets/icons/logo.png';
+
 import { Counter } from '../Counter';
-import { useAppSelector } from '../../features/hooks/hooks';
-import { useAuth } from '../../features/hooks/useAuth';
+import { useAppSelector } from 'features/hooks/hooks';
+import { useAuth } from 'features/hooks/useAuth';
+
+import styles from './Header.module.scss';
+import logo from 'assets/icons/logo.png';
 
 export const ROUTER = {
   home: '/',
@@ -17,7 +19,7 @@ export const ROUTER = {
   account: '/account',
   support: '/support',
   contacts: '/contacts',
-  productDetalePage: '/goods/:itemId',
+  productDetalePage: '/goods/:itemId'
 };
 
 export const Header = () => {

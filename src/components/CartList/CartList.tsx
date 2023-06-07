@@ -1,4 +1,4 @@
-import { Product } from '../../types/Product';
+import { Product } from 'types/Product';
 import { CartItem } from '../CartItem';
 import styles from './CartList.module.scss';
 

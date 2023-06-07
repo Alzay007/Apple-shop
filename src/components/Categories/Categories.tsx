@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { CategoriesItem } from '../CategoriesItem';
 import styles from './Categories.module.scss';
 
 export const Categories = () => {
@@ -12,50 +12,26 @@ export const Categories = () => {
       </div>
 
       <div className={styles.categories__list}>
-        <div className={styles.categories__item}>
-          <h2 className={styles.categories__subtitle}>Laptops</h2>
-          <div
-            className={[styles.categories__image, styles.categories__img1].join(
-              ' ',
-            )}
-          ></div>
-          <NavLink to="/laptops">
-            <button className={styles.categories__button}>View All</button>
-          </NavLink>
-        </div>
-        <div className={styles.categories__item}>
-          <h2 className={styles.categories__subtitle}>Phones</h2>
-          <div
-            className={[styles.categories__image, styles.categories__img2].join(
-              ' ',
-            )}
-          ></div>
-          <NavLink to="/phones">
-            <button className={styles.categories__button}>View All</button>
-          </NavLink>
-        </div>
-        <div className={styles.categories__item}>
-          <h2 className={styles.categories__subtitle}>Tablets</h2>
-          <div
-            className={[styles.categories__image, styles.categories__img3].join(
-              ' ',
-            )}
-          ></div>
-          <NavLink to="/tablets">
-            <button className={styles.categories__button}>View All</button>
-          </NavLink>
-        </div>
-        <div className={styles.categories__item}>
-          <h2 className={styles.categories__subtitle}>Watches</h2>
-          <div
-            className={[styles.categories__image, styles.categories__img4].join(
-              ' ',
-            )}
-          ></div>
-          <NavLink to="/watches">
-            <button className={styles.categories__button}>View All</button>
-          </NavLink>
-        </div>
+        <CategoriesItem
+          subtitle="Laptops"
+          imageClass={styles.categories__img1}
+          path="/laptops"
+        />
+        <CategoriesItem
+          subtitle="Phones"
+          imageClass={styles.categories__img2}
+          path="/phones"
+        />
+        <CategoriesItem
+          subtitle="Tablets"
+          imageClass={styles.categories__img3}
+          path="/tablets"
+        />
+        <CategoriesItem
+          subtitle="Watches"
+          imageClass={styles.categories__img4}
+          path="/watches"
+        />
       </div>
     </div>
   );
