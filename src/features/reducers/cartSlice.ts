@@ -32,7 +32,7 @@ const cartSlice = createSlice({
     },
     closeModal: (state) => {
       state.isModalOpen = false;
-    },
+    }
   },
 });
 

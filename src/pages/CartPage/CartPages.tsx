@@ -1,16 +1,17 @@
-import { useAppSelector } from '../../features/hooks/hooks';
 import { useEffect, useMemo } from 'react';
-import styles from './CartPages.module.scss';
-import empty from '../../assets/icons/emptyCart.svg';
-import { CartList } from '../../components/CartList';
-import { CartCheckout } from '../../components/CartCheckout';
-import { Product } from '../../types/Product';
-import { Title } from '../../components/Title';
-import { ModalWindow } from '../../components/ModalWindow';
+import { useAppSelector } from 'features/hooks/hooks';
+import { CartList } from 'components/CartList';
+import { CartCheckout } from 'components/CartCheckout';
+import { Product } from 'types/Product';
+import { Title } from 'components/Title';
+import { ModalWindow } from 'components/ModalWindow';
 import { useAuth } from 'features/hooks/useAuth';
 
+import styles from './CartPages.module.scss';
+import empty from 'assets/icons/emptyCart.svg';
+
 export const CartPage = () => {
-  const data = JSON.parse(localStorage.getItem('id') || '{}');
+  // const data = JSON.parse(localStorage.getItem('id') || '{}');
   const { items, isModalOpen } = useAppSelector((state) => state.cartReducer);
   const { goods } = useAppSelector((state) => state.goodsReducer);
   const { isAuth } = useAuth();
@@ -20,7 +21,7 @@ export const CartPage = () => {
   }, []);
 
   const visibleList = useMemo(() => {
-    return goods.filter((phone: Product) => data?.includes(phone.id));
+    return goods.filter((phone: Product) => items.includes(phone.id));
   }, [items, goods]);
 
   const sumOfprices = visibleList

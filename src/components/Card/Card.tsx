@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { Product } from 'types/Product';
 
-import styles from './Card.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { addItem, removeItem } from 'features/reducers/cartSlice';
 import { BASE_URL } from 'features/reducers/thunk';
 import { openSnackBar } from 'features/reducers/snackSlice';
 import { useAuth } from 'features/hooks/useAuth';
+
+import styles from './Card.module.scss';
 
 interface Props {
   product: Product;
@@ -67,25 +67,14 @@ export const Card: React.FC<Props> = ({ product }) => {
         </div>
       </div>
       <div className={styles.card_buttons}>
-        {isAuth ? (
-          <button
-            className={classNames(styles.card_checkout, {
-              [styles.card_uncheckout]: isCardInArray,
-            })}
-            onClick={handleSetCardInData}
-          >
-            {isCardInArray ? 'Added' : 'Add to cart'}
-          </button>
-        ) : (
-          <button
-            className={classNames(styles.card_checkout, {
-              [styles.card_uncheckout]: isCardInArray,
-            })}
-            onClick={handleSetOpenSnack}
-          >
-            {isCardInArray ? 'Added' : 'Add to cart'}
-          </button>
-        )}
+        <button
+          className={classNames(styles.card_checkout, {
+            [styles.card_uncheckout]: isCardInArray,
+          })}
+          onClick={isAuth ? handleSetCardInData : handleSetOpenSnack}
+        >
+          {isCardInArray ? 'Added' : 'Add to cart'}
+        </button>
       </div>
     </div>
   );

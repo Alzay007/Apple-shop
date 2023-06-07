@@ -1,5 +1,5 @@
-import { clearItems } from 'features/reducers/cartSlice';
-import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { clearItems } from '../../features/reducers/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../features/hooks/hooks';
 import styles from './CartCheckout.module.scss';
 
 interface Props {
@@ -12,6 +12,7 @@ export const CartCheckout: React.FC<Props> = ({ sum }) => {
 
   const handleCheckout = () => {
     dispatch(clearItems());
+    localStorage.removeItem('id');
   };
 
   return (

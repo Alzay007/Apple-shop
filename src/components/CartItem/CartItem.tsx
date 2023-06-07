@@ -1,9 +1,9 @@
 import deleteCross from '../../assets/icons/cross.svg';
 import plus from '../../assets/icons/plus.svg';
 import minus from '../../assets/icons/minus.svg';
-import { useAppDispatch } from '../../features/hooks/hooks';
-import { removeItem } from '../../features/reducers/cartSlice';
-import { BASE_URL } from '../../features/reducers/thunk';
+import { useAppDispatch } from 'features/hooks/hooks';
+import { removeItem } from 'features/reducers/cartSlice';
+import { BASE_URL } from 'features/reducers/thunk';
 
 import styles from './CartItem.module.scss';
 
