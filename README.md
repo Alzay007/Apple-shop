@@ -1,6 +1,5 @@
 # Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using [typescript-sass-eslint-prettier](https://github.com/cufarvid/cra-templates) template.
+[DEMO](https://alzay007.github.io/Apple-shop/) template.
 
 ## Technologies used:
 
@@ -17,7 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## 1. Clone this project:
 
-### `git@github.com:Alzay007/Noname-test.git`
+### `git@github.com:Alzay007/Apple-shop.git`
 
 ## 2. Install the packages with the command:
 
