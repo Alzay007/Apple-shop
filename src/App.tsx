@@ -5,10 +5,11 @@ import { Header, ROUTER } from './components/Header';
 import {
   selectItems,
   useAppDispatch,
-  useAppSelector,
+  useAppSelector
 } from './features/hooks/hooks';
 import { fetchGoods } from './features/reducers/thunk';
 import { addItems } from './features/reducers/cartSlice';
+import { setUser } from './features/reducers/userSlice';
 import {
   CartPage,
   HomePage,
@@ -18,11 +19,10 @@ import {
   GoodsPage,
   ProductDetailPage,
   SignUpPage,
-  DevelopmentPage,
+  DevelopmentPage
 } from './pages';
 
 import './App.scss';
-import { setUser } from './features/reducers/userSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -44,8 +44,8 @@ function App() {
         setUser({
           email: user.email,
           token: user.refreshToken,
-          id: user.uid,
-        }),
+          id: user.uid
+        })
       );
     }
   }, []);

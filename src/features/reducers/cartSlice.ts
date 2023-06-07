@@ -7,7 +7,7 @@ interface CartState {
 
 const initialState: CartState = {
   items: [],
-  isModalOpen: false,
+  isModalOpen: false
 };
 
 const cartSlice = createSlice({
@@ -33,7 +33,7 @@ const cartSlice = createSlice({
     closeModal: (state) => {
       state.isModalOpen = false;
     }
-  },
+  }
 });
 
 export const {

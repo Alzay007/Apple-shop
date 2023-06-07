@@ -1,13 +1,12 @@
 import logo from '../../assets/icons/succ.png';
 import style from './Modal.module.scss';
-import ReactDOM from 'react-dom';
 import { useAppDispatch } from '../../features/hooks/hooks';
 import { closeModal } from '../../features/reducers/cartSlice';
 
 export const ModalWindow = () => {
   const dispatch = useAppDispatch();
 
-  return ReactDOM.createPortal(
+  return (
     <div className={style.modal}>
       <div className={style.modal_container}>
         <div className={style.modal_close_container}>
@@ -35,7 +34,6 @@ export const ModalWindow = () => {
           </button>
         </div>
       </div>
-    </div>,
-    document.getElementById('modal') as HTMLElement,
+    </div>
   );
 };
