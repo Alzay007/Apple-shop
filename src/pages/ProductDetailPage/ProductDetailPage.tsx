@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { Title } from '../../components/Title';
-import { Loader } from '../../components/Loader';
-import { useAppDispatch, useAppSelector } from '../../features/hooks/hooks';
-import { BASE_URL } from '../../features/reducers/thunk';
+import { Title } from 'components/Title';
+import { Loader } from 'components/Loader';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { BASE_URL } from 'features/reducers/thunk';
 
-import { addItem, removeItem } from '../../features/reducers/cartSlice';
-import { AuthSnackbar } from '../../components/AuthSnackBar';
-import { openSnackBar } from '../../features/reducers/snackSlice';
-import { useAuth } from '../../features/hooks/useAuth';
+import { addItem, removeItem } from 'features/reducers/cartSlice';
+import { AuthSnackbar } from 'components/AuthSnackBar';
+import { openSnackBar } from 'features/reducers/snackSlice';
+import { useAuth } from 'features/hooks/useAuth';
 
 import styles from './ProductDetailPage.module.scss';
 
@@ -96,7 +96,7 @@ export const ProductDetailPage = () => {
 
           <button
             className={classNames(styles.detail__checkout, {
-              [styles.detail__uncheckout]: isCardInArray,
+              [styles.detail__uncheckout]: isCardInArray
             })}
             onClick={isAuth ? handleSetCardInData : handleSetOpenSnack}
           >

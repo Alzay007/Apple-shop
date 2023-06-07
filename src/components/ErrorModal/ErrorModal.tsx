@@ -3,7 +3,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
+  DialogActions
 } from '@mui/material';
 
 interface Props {
@@ -19,7 +19,7 @@ export const ErrorModal: React.FC<Props> = ({ message, handleClose }) => {
           style={{
             textTransform: 'uppercase',
             color: 'red',
-            fontSize: '1.2rem',
+            fontSize: '1.2rem'
           }}
         >
           Error

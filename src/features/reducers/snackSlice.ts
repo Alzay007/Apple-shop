@@ -5,7 +5,7 @@ interface SnackState {
 }
 
 const initialState: SnackState = {
-  isSnackBarOpen: false,
+  isSnackBarOpen: false
 };
 
 export const snackSlice = createSlice({
@@ -17,8 +17,8 @@ export const snackSlice = createSlice({
     },
     closeSnack(state) {
       state.isSnackBarOpen = false;
-    },
-  },
+    }
+  }
 });
 
 export default snackSlice.reducer;

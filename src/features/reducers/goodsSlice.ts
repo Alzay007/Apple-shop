@@ -10,7 +10,7 @@ interface GoodsState {
 const initialState: GoodsState = {
   goods: [],
   isLoading: false,
-  isError: false,
+  isError: false
 };
 
 export const goodsSlice = createSlice({
@@ -27,8 +27,8 @@ export const goodsSlice = createSlice({
     goodsFetchingError(state) {
       state.isLoading = false;
       state.isError = true;
-    },
-  },
+    }
+  }
 });
 
 export default goodsSlice.reducer;

@@ -2,7 +2,7 @@ import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithPopup
 } from 'firebase/auth';
 import { getAuth } from 'firebase/auth';
 import { useState } from 'react';
@@ -33,8 +33,8 @@ export const LoginPage = () => {
         setUser({
           email: user.email,
           token: user.refreshToken,
-          id: user.uid,
-        }),
+          id: user.uid
+        })
       );
       localStorage.setItem('user', JSON.stringify(user));
       navigate('/account');
@@ -52,8 +52,8 @@ export const LoginPage = () => {
         setUser({
           email: user.email,
           token: user.refreshToken,
-          id: user.uid,
-        }),
+          id: user.uid
+        })
       );
       localStorage.setItem('user', JSON.stringify(user));
       navigate('/account');

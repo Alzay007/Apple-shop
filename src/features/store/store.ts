@@ -9,8 +9,8 @@ export const store = configureStore({
     goodsReducer,
     cartReducer,
     userReducer,
-    snackReducer,
-  },
+    snackReducer
+  }
 });
 
 export type AppDispatch = typeof store.dispatch;

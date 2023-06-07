@@ -28,15 +28,15 @@ export const Slider = () => {
             loop={true}
             autoplay={{
               delay: 3000,
-              disableOnInteraction: false,
+              disableOnInteraction: false
             }}
             navigation={{
               prevEl: '.prev',
-              nextEl: '.next',
+              nextEl: '.next'
             }}
             pagination={{
               el: '.swiper-pagination',
-              clickable: true,
+              clickable: true
             }}
           >
             <SwiperSlide>

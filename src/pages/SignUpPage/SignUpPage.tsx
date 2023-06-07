@@ -21,14 +21,14 @@ export const SignUpPage = () => {
       const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
-        password,
+        password
       );
       dispatch(
         setUser({
           email: user.email,
           token: user.refreshToken,
-          id: user.uid,
-        }),
+          id: user.uid
+        })
       );
       navigate('/account');
     } catch (error) {
