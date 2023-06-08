@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-[DEMO](https://alzay007.github.io/Apple-shop/) template.
+[DEMO](https://cheery-frangipane-199b33.netlify.app/#/login).
 
 ## Technologies used:
 
