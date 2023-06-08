@@ -1,8 +1,8 @@
+@import 'styles/main.scss';
+
 .loader {
-  display: flex;
+  @include flex-center;
   width: 100%;
-  justify-content: center;
-  align-items: center;
 
   &__content {
     border-radius: 50%;

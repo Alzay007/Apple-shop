@@ -1,4 +1,4 @@
-@import '../../styles/main.scss';
+@import 'styles/main.scss';
 
 .footer {
   position: absolute;
@@ -15,7 +15,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    height: 96px;
+    height: 90px;
     margin-bottom: 0;
   }
 
@@ -65,10 +65,8 @@
 
     background: transparent;
 
-    display: flex;
+    @include flex-center;
     position: relative;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
 
     transition: color 0.3s;
@@ -82,6 +80,7 @@
     width: 32px;
     height: 32px;
     border: 1px solid #b4bdc4;
+    border-radius: 20px;
     margin-left: 16px;
     transition: box-shadow 0.3s;
 

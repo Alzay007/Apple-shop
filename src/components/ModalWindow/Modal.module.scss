@@ -1,9 +1,7 @@
-@import '../../styles/main.scss';
+@import 'styles/main.scss';
 
 .modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
 
   width: 100vw;
   height: 100vh;
@@ -29,19 +27,15 @@
     }
 
     &_body {
+      @include flex-center;
       flex: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-size: 1.7rem;
       text-align: center;
     }
 
     &_footer {
       flex: 20%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
     }
 
     &_button {

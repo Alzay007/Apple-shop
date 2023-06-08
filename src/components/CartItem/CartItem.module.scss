@@ -1,4 +1,4 @@
-@import '../../styles/main.scss';
+@import 'styles/main.scss';
 
 .cartItem {
   width: 288px;
@@ -90,10 +90,8 @@
     }
 
     &_button {
-      display: flex;
+      @include flex-center;
       font-size: 30px;
-      justify-content: center;
-      align-items: center;
       width: 32px;
       height: 32px;
       border: 1px solid #b4bdc4;

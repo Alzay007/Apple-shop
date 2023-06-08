@@ -15,3 +15,15 @@
     @content;
   }
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin hover-scale($scale-factor: 1.1) {
+  &:hover {
+    transform: scale($scale-factor);
+  }
+}

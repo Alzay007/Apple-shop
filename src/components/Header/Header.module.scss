@@ -1,4 +1,4 @@
-@import '../../styles/main.scss';
+@import 'styles/main.scss';
 
 .header {
   display: flex;
@@ -26,8 +26,7 @@
   }
 
   &__icons {
-    display: flex;
-    align-items: center;
+    @include flex-center;
   }
 
   &__list {
@@ -40,11 +39,11 @@
     display: flex;
     position: relative;
     margin-right: 64px;
-    color: $colorSecondary;
+    color: $colorLink;
 
-    font-family: 'Mont', sans-serif;
+    font-family: "Nanum Myeongjo";
     font-weight: 800;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 11px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -56,38 +55,33 @@
     }
 
     &:hover {
-      color: $colorPrimary;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 26.5px;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: $colorPrimary;
-      }
+      color: $colorHover;
     }
 
-    &:focus {
-      &::after {
-        content: '';
-        position: absolute;
-        top: 26.5px;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: $colorPrimary;
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 26.5px;
+      bottom: 0;
+      left: 50%;
+      right: 0;
+      height: 2px;
+      width: 0%;
+      background-color: $colorHover;
+      transform: translate(-50%, -50%) scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      transform: translate(-50%, -50%) scaleX(1);
+      width: 100%;
     }
   }
 
   &__item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
     width: 64px;
     height: 64px;
 
@@ -100,12 +94,10 @@
     background-repeat: no-repeat;
     background-position: center;
 
-    height: 42px;
-    width: 42px;
+    height: 36px;
+    width: 36px;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+    @include hover-scale;
   }
 
   &__cart {
@@ -114,17 +106,15 @@
     background-position: center;
     background-size: contain;
 
-    height: 38px;
-    width: 38px;
+    height: 34px;
+    width: 34px;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+    @include hover-scale;
   }
 
   &__heart {
     position: absolute;
-    bottom: 38px;
+    bottom: 36px;
     right: 72px;
 
     z-index: 1;
@@ -132,8 +122,8 @@
 
   &__signIn {
     position: absolute;
-    bottom: 42px;
-    right: 0px;
+    bottom: 36px;
+    right: 1px;
 
     width: 20px;
     height: 20px;

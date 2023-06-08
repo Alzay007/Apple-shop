@@ -2,10 +2,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { NavLink } from 'react-router-dom';
 
-import image1 from '../../assets/images/image1.jpg';
-import image2 from '../../assets/images/image2.png';
-import image3 from '../../assets/images/image3.png';
-import image4 from '../../assets/images/image4.png';
+import image1 from 'assets/images/image1.jpg';
+import image2 from 'assets/images/image2.png';
+import image3 from 'assets/images/image3.png';
+import image4 from 'assets/images/image4.png';
 
 import './Swiper.scss';
 
@@ -40,7 +40,7 @@ export const Slider = () => {
             }}
           >
             <SwiperSlide>
-              <NavLink to="/laptop">
+              <NavLink to="/laptops">
                 <img src={image1} alt="banner_1" className="banner__image" />
               </NavLink>
             </SwiperSlide>
