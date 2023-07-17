@@ -1,0 +1,111 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 25px 0 16px;
+
+  &__logo {
+    display: flex;
+    margin-bottom: 28px;
+
+    @include onTablet {
+      margin-bottom: 41px;
+    }
+  }
+
+  &__btn {
+    display: flex;
+  }
+}
+
+.logo_home {
+  height: 16px;
+  width: 16px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../assets/icons/house.svg);
+
+  margin-right: 14px;
+}
+
+.logo_vector {
+  height: 16px;
+  width: 16px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../assets/icons/arrowRight.svg);
+
+  margin-right: 14px;
+}
+
+.logo_link {
+  font-family: 'Mont';
+  font-size: 12px;
+  line-height: 16px;
+
+  color: $colorPrimary;
+  margin-right: 14px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.logo_text {
+  font-family: 'Mont-Semi';
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: $colorSecondary;
+}
+
+.btn_vector {
+  width: 16px;
+  height: 16px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../assets/icons/greyArrowLeft.svg);
+
+  margin-right: 15px;
+}
+
+.btn_link {
+  font-family: 'Mont-Semi';
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: $colorSecondary;
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.title {
+  font-family: 'Mont-Bold';
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 31px;
+
+  color: $colorPrimary;
+  margin-bottom: 32px;
+
+  @include onTablet {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+
+    margin-bottom: 40px;
+  }
+}

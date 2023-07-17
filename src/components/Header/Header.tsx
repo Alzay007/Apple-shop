@@ -19,12 +19,11 @@ export const ROUTER = {
   account: '/account',
   support: '/support',
   contacts: '/contacts',
-  productDetalePage: '/goods/:itemId'
+  productDetalePage: '/:itemId'
 };
 
 export const Header = () => {
   const { items } = useAppSelector((state) => state.cartReducer);
-
   const { isAuth } = useAuth();
 
   return (

@@ -73,7 +73,7 @@ export const LoginPage = () => {
       <div className={styles.login__content}>
         <h1 className={styles.login__title}>Sign In</h1>
         <Form action={'Sing In'} handleClick={handleLogin} />
-        <p className={styles.login__text}>Don&apos;t you have an account?</p>
+        <p className={styles.login__text}>Don&apos;t have an account?</p>
 
         <div className={styles.login__signUp}>
           <div className={styles.login__google} onClick={signInWithGoogle}>

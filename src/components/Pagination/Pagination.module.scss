@@ -1,0 +1,82 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
+
+ul > li {
+  display: inline-block;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 24px auto 64px;
+
+  &_ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 640px) and (max-width: 900px) {
+    margin: 40px auto 64px;
+    max-width: 560px;
+  }
+
+  @media (min-width: 900px) and (max-width: 1199px) {
+    max-width: 845px;
+  }
+
+  @include onDesktop {
+    margin: 40px auto 80px;
+    max-width: 1136px;
+  }
+}
+
+.page {
+  &_item {
+    border: 1px solid #e2e6e9;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+    }
+  }
+
+  &_link {
+    display: inline-block;
+    padding: 8px 16px;
+    font-family: 'Mont-Bold';
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: $colorPrimary;
+  }
+
+  &_active {
+    background: #313237;
+    color: $colorWhite;
+  }
+
+  &_arrow {
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 16px 19px;
+  }
+}
+
+.link_active {
+  color: $colorWhite;
+}
+
+.right {
+  background-image: url('../../assets/icons/arrowRight.svg');
+}
+
+.left {
+  background-image: url('../../assets/icons/greyArrowLeft.svg');
+}

@@ -80,8 +80,11 @@ export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
         </button>
         <div className={styles.cartItem__count_number}>{count}</div>
         <button
-          className={styles.cartItem__count_button}
+          className={classNames(styles.cartItem__count_button, {
+            [styles.cartItem__count_button_disabled]: count === 10
+          })}
           onClick={handleCountUp}
+          disabled={count === 10}
         >
           <img src={plus} className={styles.cartItem__count_button_symbol} />
         </button>

@@ -1,0 +1,44 @@
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
+
+.title_select {
+  min-width: 100px;
+  margin: 4px 0 24px;
+  text-indent: 5px;
+  appearance: none;
+  background-color: white;
+  border: 1px solid #b4bdc3;
+  display: inline-block;
+  font: inherit;
+  line-height: 1.5em;
+  padding: 0.5em 3.5em 0.5em 1em;
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+.title_select:focus {
+  background-image: linear-gradient(45deg, green 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, green 50%);
+  background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+}
+
+.title_select_text {
+  margin-top: 32px;
+  color: $colorSecondary;
+  font-family: 'Mont';
+  font-size: 14px;
+  line-height: 21px;
+
+  @include onTablet {
+    margin-top: 40px;
+  }
+}

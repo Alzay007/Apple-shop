@@ -1,5 +1,5 @@
 export enum SortType {
-  ALL = 'all',
+  DEFAULT = 'default',
   LOW = 'low',
   HIGH = 'high',
   RATING = 'rating'

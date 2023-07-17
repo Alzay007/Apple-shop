@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from 'features/hooks/hooks';
-import styles from './GoodsPage.module.scss';
 
 import { Loader } from 'components/Loader';
 import { GoodsList } from 'components/GoodsList';
@@ -10,6 +9,8 @@ import { SortType } from 'types/SortType';
 import { sortItems } from 'helpers/sortFunc';
 import { AuthSnackbar } from 'components/AuthSnackBar';
 
+import styles from './GoodsPage.module.scss';
+
 interface Props {
   title: string;
   category: string;
@@ -17,7 +18,7 @@ interface Props {
 
 export const GoodsPage: React.FC<Props> = ({ title, category }) => {
   const { isLoading, goods } = useAppSelector((state) => state.goodsReducer);
-  const [sortBy, setSortBy] = useState<SortType>(SortType.ALL);
+  const [sortBy, setSortBy] = useState<SortType>(SortType.DEFAULT);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,12 +34,11 @@ export const GoodsPage: React.FC<Props> = ({ title, category }) => {
 
   return (
     <section className={styles.goods}>
-      {isLoading && <Loader />}
-
       <Title title={title} />
       <SortField sortBy={sortBy} handleStatus={handleStatus} />
 
-      <GoodsList itemsList={sortedGoods} />
+      {isLoading ? <Loader /> : <GoodsList itemsList={sortedGoods} />}
+
       <AuthSnackbar />
     </section>
   );

@@ -1,0 +1,54 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
+
+.specs {
+  width: 100%;
+
+  @include onTablet {
+    width: 590px;
+  }
+
+  &__title {
+    font-family: 'Mont-Semi';
+    font-size: 20px;
+    line-height: 26px;
+    color: $colorPrimary;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid $colorElements;
+    margin-bottom: 30px;
+
+    @include onTablet {
+      font-family: 'Mont-Bold';
+      font-size: 22px;
+      line-height: 31px;
+    }
+  }
+
+  &__characteristic {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__name {
+    font-family: 'Mont';
+    font-size: 14px;
+    line-height: 21px;
+
+    color: $colorSecondary;
+  }
+
+  &__value {
+    font-family: 'Mont';
+    font-size: 14px;
+    line-height: 21px;
+
+    color: $colorPrimary;
+  }
+}

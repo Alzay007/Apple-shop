@@ -1,0 +1,73 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
+
+.recommended {
+  max-width: 288px;
+  margin: 57px 0;
+
+  @include onTablet {
+    max-width: 592px;
+    margin: 64px 0;
+  }
+
+  @include onDesktop {
+    max-width: 1136px;
+    margin: 80px auto;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 24px;
+  }
+
+  &__subtitle {
+    font-family: 'Mont-Bold';
+    font-weight: 800;
+    font-size: 32px;
+
+    color: $colorPrimary;
+    line-height: 41px;
+
+    @include onMobile {
+      line-height: 31px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__prev {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid $colorElements;
+    background-image: url(../../assets/icons/next.svg);
+    transform: rotate(180deg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      border: 1px solid #b4bdc3;
+    }
+  }
+
+  &__next {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid $colorElements;
+    background-image: url(../../assets/icons/next.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      border: 1px solid #b4bdc3;
+    }
+  }
+}

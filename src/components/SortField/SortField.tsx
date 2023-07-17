@@ -15,7 +15,9 @@ export const SortField: React.FC<Props> = ({ sortBy, handleStatus }) => {
   return (
     <div className={styles.field}>
       <FormControl sx={{ m: 1, minWidth: 130 }} size="small">
-        <InputLabel id="demo-select-small">Sort By</InputLabel>
+        <InputLabel id="demo-select-small" style={{ zIndex: 0 }}>
+          Sort By
+        </InputLabel>
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
@@ -23,8 +25,8 @@ export const SortField: React.FC<Props> = ({ sortBy, handleStatus }) => {
           label="sort"
           onChange={(event) => handleStatus(event.target.value as SortType)}
         >
-          <MenuItem value={SortType.ALL}>
-            <em>All</em>
+          <MenuItem value={SortType.DEFAULT}>
+            <em>Default</em>
           </MenuItem>
           <MenuItem value={SortType.LOW}>Low price</MenuItem>
           <MenuItem value={SortType.HIGH}>High price</MenuItem>

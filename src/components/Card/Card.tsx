@@ -39,7 +39,7 @@ export const Card: React.FC<Props> = ({
 
   return (
     <div className={styles.card}>
-      <NavLink to={`/goods/${itemId}`}>
+      <NavLink to={`/${itemId}`}>
         <img
           src={`${BASE_URL}/${image}`}
           alt="card-logo"

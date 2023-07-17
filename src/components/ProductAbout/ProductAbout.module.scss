@@ -1,0 +1,60 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
+
+.about {
+  width: 100%;
+  margin-bottom: 56px;
+
+  @include onTablet {
+    width: 590px;
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 0;
+  }
+
+  &__title {
+    font-family: 'Mont-Semi';
+    font-size: 20px;
+    line-height: 26px;
+    color: $colorPrimary;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid $colorElements;
+    margin-bottom: 32px;
+
+    @include onTablet {
+      font-family: 'Mont-Bold';
+      font-size: 22px;
+      line-height: 31px;
+    }
+  }
+
+  &__subtitle {
+    font-family: 'Mont-Semi';
+    color: $colorPrimary;
+    font-size: 16px;
+    line-height: 20px;
+
+    margin-bottom: 16px;
+
+    @include onTablet {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  &__content {
+    font-family: 'Mont';
+    font-size: 14px;
+    line-height: 21px;
+    color: #89939a;
+
+    margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
