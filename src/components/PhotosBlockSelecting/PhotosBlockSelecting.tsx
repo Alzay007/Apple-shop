@@ -11,6 +11,7 @@ export const PhotosBlockSelecting: React.FC<Props> = ({ product }) => {
   const images = product?.images;
   const [currentImg, setCurrentImg] = useState('');
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (event: any) => {
     setCurrentImg(event.currentTarget.getAttribute('src'));
   };
