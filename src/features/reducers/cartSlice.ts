@@ -37,6 +37,10 @@ const cartSlice = createSlice({
       state.isModalOpen = true;
       state.sumOfItems = {};
     },
+    clearCart: (state) => {
+      state.items = [];
+      state.sumOfItems = {};
+    },
     closeModal: (state) => {
       state.isModalOpen = false;
     },
@@ -65,6 +69,7 @@ export const {
   addItems,
   removeItem,
   clearItems,
+  clearCart,
   closeModal,
   decrementCount,
   incrementCount,

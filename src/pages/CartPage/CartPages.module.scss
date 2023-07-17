@@ -13,8 +13,9 @@
     &_nav {
       display: flex;
       flex-direction: row;
-      margin-bottom: 24px;
       align-items: center;
+
+      margin-bottom: 24px;
       cursor: pointer;
     }
   
@@ -63,7 +64,11 @@
     }
   }
 
-  &__content {
+  &__clear {
+    margin-bottom: 30px !important;
+  }
+
+  &__list {
     display: flex;
     flex-direction: row;
   }

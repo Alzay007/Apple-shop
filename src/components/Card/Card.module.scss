@@ -91,16 +91,6 @@
     color: $colorPrimary;
   }
 
-  &_oldPrice {
-    font-family: 'Mont';
-    color: $colorSecondary;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 28px;
-    text-decoration-line: line-through;
-    margin-bottom: 9.5px;
-  }
-
   &_characteristics {
     display: flex;
     flex-direction: column;
