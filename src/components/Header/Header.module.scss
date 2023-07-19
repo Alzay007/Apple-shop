@@ -2,9 +2,7 @@
 @import 'styles/utils/vars';
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-between;
 
   position: sticky;
   top: 0;
@@ -21,7 +19,7 @@
     padding-left: 32px;
   }
 
-  &__logo {
+  &__icon {
     width: 32px;
     height: 32px;
 
@@ -31,41 +29,34 @@
     }
   }
 
-  &__nav {
-    display: flex;
-    align-items: center;
-  }
-
   &__list {
     display: none;
 
     @include onTablet {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      padding-left: 32px;
-    }
-
-    @include onDesktop {
-      padding-left: 0;
+      @include flex-center;
     }
   }
 
   &__link {
     display: flex;
     position: relative;
-    margin-right: 64px;
+    margin-right: 32px;
     color: $colorLink;
 
     font-family: "Nanum Myeongjo";
     font-weight: 800;
-    font-size: 13px;
-    line-height: 11px;
+    font-size: 11px;
+    line-height: 9px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 
     transition: color 0.3s;
+
+    @include onDesktop {
+      font-size: 13px;
+      line-height: 11px;
+      margin-right: 64px;
+    }
 
     &:last-child {
       margin-right: 0;
@@ -107,62 +98,87 @@
 
   &__item {
     @include flex-center;
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
 
     box-shadow: 0 0 0 1px $colorElements;
-  }
 
-  &__login {
-    background-image: url(../../assets/icons/login.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    height: 36px;
-    width: 36px;
-
-    @include hover-scale;
+    @include onDesktop {
+      width: 64px;
+      height: 64px;
+    }
   }
 
   &__cart {
     background-image: url(../../assets/icons/bag.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    @include background-center-contain;
 
-    height: 34px;
-    width: 34px;
+    height: 28px;
+    width: 28px;
 
     @include hover-scale;
+
+    @include onDesktop {
+      height: 34px;
+      width: 34px;
+    }
+  }
+
+  &__login {
+    background-image: url(../../assets/icons/login.svg);
+    @include background-center-contain;
+
+    height: 30px;
+    width: 30px;
+
+    @include hover-scale;
+
+    @include onDesktop {
+      height: 36px;
+      width: 36px;
+    }
   }
 
   &__heart {
     position: absolute;
-    bottom: 36px;
-    right: 72px;
+    bottom: 26px;
+    right: 52px;
 
     z-index: 1;
+
+    @include onDesktop {
+      bottom: 36px;
+      right: 72px;
+    }
   }
 
   &__signIn {
     position: absolute;
-    bottom: 36px;
+    bottom: 26px;
     right: 1px;
 
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-image: url('../../assets/icons/signin.png');
     background-size: contain;
 
     z-index: 1;
+
+    @include onDesktop {
+      bottom: 36px;
+      right: 1px;
+
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &__burger {
     display: block;
     width: 48px;
     height: 48px;
-    border: 1px solid $colorElements;
+    border-left: 1px solid $colorElements;
+    border-right: 1px solid $colorElements;
 
     background-image: url(../../assets/icons/union.svg);
     background-repeat: no-repeat;

@@ -38,12 +38,10 @@ export const Header: React.FC<Props> = ({
 
   return (
     <div className={styles.header}>
-      <div className={styles.header__nav}>
-        <div className={styles.header__icon}>
-          <Link to="/">
-            <img src={logo} alt="logo" className={styles.header__logo} />
-          </Link>
-        </div>
+      <div className={styles.header__logo}>
+        <Link to="/">
+          <img src={logo} alt="logo" className={styles.header__icon} />
+        </Link>
       </div>
 
       <nav className={styles.header__list}>

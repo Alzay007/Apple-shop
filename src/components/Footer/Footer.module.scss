@@ -4,48 +4,76 @@
 .footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
 
-  padding: 0 152px;
+  width: 100%;
+  padding: 0 10px;
 
   border-top: 1px solid $colorElements;
   background-image: $backgroundHeader;
+
+  @include onTablet {
+    padding: 0 30px;
+  }
+
+  @include onDesktop {
+    padding: 0 152px;
+  }
 
   &__content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     height: 90px;
     margin-bottom: 0;
+
+    @include onTablet {
+      height: 70px;
+    }
   }
 
   &__icon {
     display: flex;
     justify-items: center;
-    margin: 32px 0;
-    width: 89px;
     height: 30px;
   }
 
   &__list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 107px;
+    @include flex-column;
+    justify-content: center;
+    gap: 12px;
+
+    @include onTablet {
+      flex-direction: row;
+      gap: 48px;
+    }
+
+    @include onDesktop {
+      gap: 107px;
+    }
   }
 
   &__item {
     font-family: 'Mont-Bold';
     color: $colorSecondary;
     font-weight: 700;
-    font-size: 12px;
-    line-height: 11px;
+    font-size: 9px;
+    line-height: 10px;
 
     text-transform: uppercase;
     letter-spacing: 0.04em;
 
     transition: color 0.3s;
+
+    @include onTablet {
+      font-size: 11px;
+    }
+
+    @include onDesktop {
+      font-size: 12px;
+      line-height: 11px;
+    }
 
     &:hover {
       color: $colorPrimary;
@@ -58,10 +86,10 @@
   }
 
   &__button {
-    font-family: Mont;
+    font-family: 'Mont';
     color: $colorSecondary;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 0;
     border: none;
 
     background: transparent;
@@ -71,6 +99,10 @@
     cursor: pointer;
 
     transition: color 0.3s;
+
+    @include onTablet {
+      font-size: 12px;
+    }
 
     &:hover {
       color: $colorBlack;

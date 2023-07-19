@@ -22,6 +22,24 @@
   align-items: center;
 }
 
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin background-center-contain {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 @mixin hover-scale($scale-factor: 1.1) {
   &:hover {
     transform: scale($scale-factor);

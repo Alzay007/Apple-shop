@@ -1,9 +1,8 @@
 @import 'styles/utils/vars';
+@import 'styles/utils/mixins';
 
 .categories {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column;
 
   max-width: 1136px;
   margin: 0 auto;
@@ -11,27 +10,46 @@
   &__title {
     font-family: 'Mont-Bold';
     font-weight: 800;
-    font-size: 32px;
-
-    color: $colorPrimary;
-    line-height: 41px;
+    font-size: 19px;
+    line-height: 21px;
     text-transform: uppercase;
 
-    margin-bottom: 50px;
+    color: $colorPrimary;
+    margin-bottom: 40px;
+
+    @include onTablet {
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 50px;
+    }
+
+    @include onDesktop {
+      font-size: 32px;
+      line-height: 41px;
+    }
   }
 
   &__arrow {
-    margin-bottom: 120px;
+    margin-bottom: 90px;
+
+    @include onTablet {
+      margin-bottom: 120px;
+    }
 
     &_item {
       display: block;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
       border-bottom: 5px solid #25c57d;
       border-right: 5px solid #b3c816;
       transform: rotate(45deg);
       margin: -16px;
       animation: arrow-down 2s infinite;
+
+      @include onTablet {
+        width: 30px;
+        height: 30px;
+      }
 
       &:nth-child(2){
         animation-delay: -0.2s;
@@ -44,17 +62,18 @@
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 
-    gap: 64px;
-    margin: 0 auto;
+    gap: 40px;
+
+    @include onTablet {
+      gap: 64px;
+      margin: 0 auto;
+    }
   }
 
   &__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex-column;
 
     gap: 24px;
   }
@@ -62,67 +81,89 @@
   &__subtitle {
     font-family: 'Mont-Semi';
     font-weight: 700;
-    font-size: 42px;
-    line-height: 26px;
+    font-size: 28px;
+    line-height: 24px;
 
     color: $colorPrimary;
     margin-bottom: 4px;
+
+    @include onTablet {
+      font-size: 42px;
+      line-height: 26px;
+    }
   }
 
   &__image {
-    height: 400px;
-    width: 800px;
+    height: 200px;
+    width: 280px;
+
+    @include onTablet {
+      height: 300px;
+      width: 500px;
+    }
+
+    @include onDesktop{
+      height: 400px;
+      width: 800px;
+    }
   }
 
   &__img1 {
     background-image: url('../../assets/images/mac.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    @include background-center-contain;
+
+    @include onDesktop {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
   }
 
   &__img2 {
+    @include background-center-contain;
     background-image: url('../../assets/images/iphone.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
   }
 
   &__img3 {
     background-image: url('../../assets/images/ipad.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    @include background-center-contain;
   }
 
   &__img4 {
     background-image: url('../../assets/images/watch.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    @include background-center-contain;
   }
 
   &__button {
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 1.3px;
 
     color: #313133;
-    min-width: 200px;
-    min-height: 50px;
+    min-width: 100px;
+    min-height: 20px;
 
     background: #4FD1C5;
     background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
     border: none;
     border-radius: 1000px;
-    box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+    box-shadow: 6px 6px 6px rgba(79,209,197,.64);
     transition: all 0.3s ease-in-out 0s;
     cursor: pointer;
     outline: none;
     position: relative;
     padding: 10px;
+
+    @include onDesktop {
+      font-size: 14px;
+
+      min-width: 200px;
+      min-height: 50px;
+      border-radius: 1000px;
+      box-shadow: 12px 12px 12px rgba(79,209,197,.64);
+    }
 
     &::before {
       content: '';
@@ -183,5 +224,20 @@
     width: 200px;
     height: 200px;
     opacity: 0;
+  }
+}
+
+@include onMobile {
+  @keyframes ring {
+    0% {
+      width: 30px;
+      height: 30px;
+      opacity: 1;
+    }
+    100% {
+      width: 100px;
+      height: 100px;
+      opacity: 0;
+    }
   }
 }

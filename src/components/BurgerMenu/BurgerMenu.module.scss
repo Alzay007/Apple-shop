@@ -11,9 +11,7 @@
   }
 
   &__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-between;
     gap: 16px;
 
     height: 48px;
@@ -25,8 +23,7 @@
   }
 
   &__logo {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     padding-left: 10px;
   }
 
@@ -60,9 +57,10 @@
   }
 
   &__link {
-    font-family: 'Mont-Bold';
-    color: $colorSecondary;
+    font-family: "Nanum Myeongjo";
+    font-weight: 800;
     font-size: 12px;
+    color: $colorSecondary;
 
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -136,12 +134,12 @@
   }
 }
 
-.cont_img {
+.count_img {
   height: 40px;
 }
 
 .basket_img {
-  height: 40px;
+  height: 38px;
 }
 
 .cross_icon {
