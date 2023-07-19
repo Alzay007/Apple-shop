@@ -1,0 +1,154 @@
+@import 'styles/utils/vars.scss';
+@import 'styles/utils/mixins.scss';
+
+.burger {
+  background-color: $colorWhite;
+  height: 100vh;
+  overflow-x: hidden;
+
+  @include onTablet {
+    display: none;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    height: 48px;
+    width: 100%;
+    padding-left: 6px;
+
+    background-image: $backgroundHeader;
+    box-shadow: 0px 1px 0px $colorElements;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+
+  &__img {
+    width: 32px;
+    height: 32px;
+  }
+
+  &__cross {
+    @include flex-center;
+
+    width: 48px;
+    height: 48px;
+
+    border-left: 1px solid $colorElements;
+    border-right: 1px solid $colorElements;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    text-align: center;
+    margin-bottom: 32px;
+
+    &:first-child {
+      margin-top: 32px;
+    }
+  }
+
+  &__link {
+    font-family: 'Mont-Bold';
+    color: $colorSecondary;
+    font-size: 12px;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+
+    &:hover {
+      color: $colorPrimary;
+      padding-bottom: 6px;
+      border-bottom: 2px solid $colorPrimary;
+      transition-duration: 0.5s;
+    }
+  }
+
+  &__bottom {
+    @include flex-center;
+    position: absolute;
+    bottom: 0;
+
+    height: 70px;
+    width: 100%;
+
+    border-top: 1px solid $colorElements;
+  }
+
+  &__signIn {
+    position: absolute;
+
+    bottom: 38px;
+    left: 88px;
+
+    width: 18px;
+    height: 18px;
+    background-image: url('../../assets/icons/signin.png');
+    background-size: contain;
+
+    z-index: 1;
+  }
+
+  &__count {
+    position: absolute;
+
+    bottom: 38px;
+    right: 58px;
+  }
+
+  &__basket {
+    @include flex-center;
+    position: absolute;
+    right: 0;
+
+    width: 50%;
+    height: 70px;
+    border-left: 1px solid $colorElements;
+
+    &:focus {
+      border-bottom: 2px solid $colorPrimary;
+    }
+  }
+
+  &__login {
+    @include flex-center;
+    position: absolute;
+    left: 0;
+
+    width: 50%;
+    height: 70px;
+
+    &:focus {
+      border-bottom: 2px solid $colorPrimary;
+    }
+  }
+}
+
+.cont_img {
+  height: 40px;
+}
+
+.basket_img {
+  height: 40px;
+}
+
+.cross_icon {
+  width: 15px;
+  transition: transform 1s;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+}

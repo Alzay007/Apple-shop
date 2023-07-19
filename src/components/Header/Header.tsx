@@ -22,9 +22,19 @@ export const ROUTER = {
   productDetalePage: '/:itemId'
 };
 
-export const Header = () => {
+interface Props {
+  setBurgerMenuSelected: (value: boolean) => void;
+  burgerMenuSelected: boolean;
+}
+
+export const Header: React.FC<Props> = ({
+  setBurgerMenuSelected,
+  burgerMenuSelected
+}) => {
   const { items } = useAppSelector((state) => state.cartReducer);
   const { isAuth } = useAuth();
+
+  const handlerClick = (value: boolean) => setBurgerMenuSelected(!value);
 
   return (
     <div className={styles.header}>
@@ -70,6 +80,13 @@ export const Header = () => {
         <NavLink to="/login" className={styles.header__item}>
           <div className={styles.header__login}></div>
         </NavLink>
+      </div>
+
+      <div
+        className={styles.header__burger}
+        onClick={() => handlerClick(burgerMenuSelected)}
+      >
+        <Link to="/" className={styles.burger_menu} />
       </div>
     </div>
   );

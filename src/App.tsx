@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header, ROUTER } from './components/Header';
+import { BurgerMenu } from './components/BurgerMenu';
 import {
   selectItems,
   useAppDispatch,
@@ -27,6 +28,7 @@ import './App.scss';
 function App() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
+  const [burgerMenuSelected, setBurgerMenuSelected] = useState(false);
 
   useEffect(() => {
     dispatch(fetchGoods());
@@ -54,9 +56,18 @@ function App() {
     window.localStorage.setItem('id', JSON.stringify(items));
   }, [items]);
 
-  return (
+  return burgerMenuSelected ? (
+    <BurgerMenu
+      setBurgerMenuSelected={setBurgerMenuSelected}
+      burgerMenuSelected={burgerMenuSelected}
+    />
+  ) : (
     <>
-      <Header />
+      <Header
+        setBurgerMenuSelected={setBurgerMenuSelected}
+        burgerMenuSelected={burgerMenuSelected}
+      />
+
       <div className="section">
         <Routes>
           <Route path={ROUTER.home} element={<HomePage />} />
@@ -89,6 +100,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+
       <Footer />
     </>
   );

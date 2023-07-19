@@ -1,7 +1,8 @@
-import styles from './PhotosBlockSelecting.module.scss';
 import { useState } from 'react';
 import { ProductType } from '../../types/ProductType';
 import { BASE_URL } from 'features/reducers/thunk';
+
+import styles from './PhotosBlockSelecting.module.scss';
 
 interface Props {
   product: ProductType | undefined;
