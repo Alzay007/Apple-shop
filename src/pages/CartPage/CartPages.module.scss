@@ -1,9 +1,18 @@
 @import 'styles/utils/vars';
+@import 'styles/utils/mixins';
 
 .cart {
   max-width: 1136px;
-  padding: 41px 0;
-  margin: 0 auto;
+  padding: 25px 16px 25px;
+
+  @include onTablet {
+    padding: 41px 24px 0px;
+  }
+
+  @include onDesktop {
+    padding: 41px 0 0;
+    margin: 0 auto;
+  }
 
   &__title {
     display: flex;
@@ -50,17 +59,27 @@
     gap: 20px;
 
     &_img {
-      width: 300px;
-      height: 300px;
+      width: 200px;
+      height: 200px;
+
+      @include onTablet {
+        width: 300px;
+        height: 300px;
+      }
     }
 
     &_text {
       font-family: 'Mont-Bold';
       font-weight: 800;
-      font-size: 42px;
-      line-height: 56px;
+      font-size: 24px;
+      line-height: 26px;
       color: $colorPrimary;
       text-transform: uppercase;
+
+      @include onTablet {
+        font-size: 42px;
+        line-height: 56px;
+      }
     }
   }
 
@@ -70,6 +89,51 @@
 
   &__list {
     display: flex;
+    flex-direction: column;
+
+    @include onDesktop {
+      flex-direction: row;
+    }
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+
+  &__nav {
+    display: flex;
     flex-direction: row;
+    margin-bottom: 24px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__arrow {
+    margin-right: 10px;
+    margin-left: 5px;
+    height: 10px;
+  }
+
+  &__text {
+    font-family: 'Mont';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: $colorSecondary;
+  }
+
+  &__headline {
+    font-family: 'Mont-Bold';
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    color: $colorPrimary;
+
+    @include onTablet {
+      font-size: 48px;
+      line-height: 56px;
+    }
   }
 }

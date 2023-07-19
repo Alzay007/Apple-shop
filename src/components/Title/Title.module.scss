@@ -1,37 +1,64 @@
 @import 'styles/utils/vars';
+@import 'styles/utils/mixins';
 
 .title {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 32px;
+  width: 100%;
 
-  &__nav {
+  &_navigation {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 24px;
     align-items: center;
-    cursor: pointer;
+
+    margin-top: 25px;
   }
 
-  &__arrow {
-    margin-right: 10px;
-    margin-left: 5px;
-    height: 10px;
+  &_house {
+    margin-right: 15px;
   }
 
-  &__text {
-    font-family: 'Mont';
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    color: $colorSecondary;
+  &_arrow {
+    margin-right: 15px;
   }
 
-  &__headline {
+  &_lable {
     font-family: 'Mont-Bold';
     font-weight: 800;
     font-size: 48px;
     line-height: 56px;
     color: $colorPrimary;
+
+    margin-top: 40px;
+
+    @include onMobile {
+      margin-top: 24px;
+      font-size: 32px;
+      line-height: 41px;
+    }
+  }
+
+  &_arrowText {
+    color: $colorSecondary;
+    font-family: 'Mont';
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  &_count {
+    margin-top: 8px;
+    color: $colorSecondary;
+    font-family: 'Mont';
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &_select_text {
+    margin-top: 32px;
+    color: $colorSecondary;
+    font-family: 'Mont';
+    font-size: 14px;
+    line-height: 21px;
+
+    @include onTablet {
+      margin-top: 40px;
+    }
   }
 }

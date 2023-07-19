@@ -1,17 +1,18 @@
 import { useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { CartList } from 'components/CartList';
 import { CartCheckout } from 'components/CartCheckout';
 import { Product } from 'types/Product';
-import { Title } from 'components/Title';
 import { ModalWindow } from 'components/ModalWindow';
 import { useAuth } from 'features/hooks/useAuth';
 import { clearCart } from 'features/reducers/cartSlice';
 
 import styles from './CartPages.module.scss';
 import empty from 'assets/icons/emptyCart.svg';
+import arrow from 'assets/icons/greyArrowLeft.svg';
 
 export const CartPage = () => {
   const data = JSON.parse(localStorage.getItem('id') || '{}');
@@ -19,6 +20,7 @@ export const CartPage = () => {
   const { items, isModalOpen } = useAppSelector((state) => state.cartReducer);
   const { goods } = useAppSelector((state) => state.goodsReducer);
   const { isAuth } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,7 +39,13 @@ export const CartPage = () => {
       {isModalOpen && <ModalWindow />}
 
       <div className={styles.cart}>
-        <Title title={'Cart'} />
+        <div className={styles.title}>
+          <div className={styles.title__nav} onClick={() => navigate(-1)}>
+            <img src={arrow} alt="arrow" className={styles.title__arrow} />
+            <p className={styles.title__text}>Back</p>
+          </div>
+          <h1 className={styles.title__headline}>Cart</h1>
+        </div>
 
         {items.length < 1 && isAuth ? (
           <div className={styles.cart__empty}>

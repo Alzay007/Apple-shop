@@ -1,5 +1,15 @@
+@import 'styles/utils/mixins';
+
 .goods {
   max-width: 1136px;
-  padding: 41px 0 80px;
-  margin: 0 auto;
+  padding: 0 16px;
+
+  @include onTablet {
+    padding: 0 24px;
+  }
+
+  @include onDesktop {
+    margin: 0 auto;
+    padding: 0;
+  }
 }

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'features/hooks/hooks';
 import { logoutUser } from 'features/reducers/userSlice';
-import { Title } from 'components/Title';
 
 import styles from './AccountPage.module.scss';
 
@@ -17,8 +16,6 @@ export const AccountPage = () => {
 
   return (
     <section className={styles.account}>
-      <Title title={'Account'} />
-
       <h2 className={styles.account__title}>Welcome</h2>
 
       <div className={styles.account__content}>

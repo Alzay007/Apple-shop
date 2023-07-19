@@ -34,7 +34,7 @@ export const GoodsPage: React.FC<Props> = ({ title, category }) => {
 
   return (
     <section className={styles.goods}>
-      <Title title={title} />
+      <Title title={title} count={goodsList.length} />
       <SortField sortBy={sortBy} handleStatus={handleStatus} />
 
       {isLoading ? <Loader /> : <GoodsList itemsList={sortedGoods} />}

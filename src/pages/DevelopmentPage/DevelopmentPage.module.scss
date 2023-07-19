@@ -1,3 +1,5 @@
+@import 'styles/utils/mixins';
+
 .container {
   position: fixed;
   left: 50%;
@@ -8,4 +10,9 @@
 .image {
   max-height: 600px;
   max-width: 600px;
+
+  @include onMobile {
+    max-height: 280px;
+    max-width: 280px;
+  }
 }
