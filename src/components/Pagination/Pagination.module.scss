@@ -6,9 +6,7 @@ ul > li {
 }
 
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 
   margin: 24px auto 64px;
 
@@ -74,9 +72,18 @@ ul > li {
 }
 
 .right {
-  background-image: url('../../assets/icons/arrowRight.svg');
+  background-image: url('../../assets/icons/next.svg');
 }
 
 .left {
   background-image: url('../../assets/icons/greyArrowLeft.svg');
+}
+
+.next_disabled {
+  background-image: url('../../assets/icons/arrowRight.svg');
+}
+
+.prev_disabled {
+  background-image: url('../../assets/icons/arrowRight.svg');
+  transform: scaleX(-1);
 }

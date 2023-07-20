@@ -1,7 +1,7 @@
 # 💻 Apple Store
 ![Screenshot_1](https://github.com/Alzay007/Apple-shop/assets/108741138/0b133bd6-1e2b-422d-9790-e14568c9b2c2)
 
-Welcome to the Apple Store! This web application is designed to provide users with an interactive platform to browse, search, and purchase various gadgets. Whether you're looking for smartphones, tablets, smartwatches, or other electronic devices, this application has got you covered.
+Welcome to the Apple Store! This web application is designed to provide users with an interactive platform to browse, search, and purchase various gadgets. Whether you're looking for smartphones, tablets, smartwatches, or other electronic devices, this application has got you covered. Website designed to be fully responsive and adapt seamlessly to various devices, including mobile, tablet, and desktop screens.
 
 ## Features
 

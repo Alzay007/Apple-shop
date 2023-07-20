@@ -39,6 +39,17 @@ export const Pagination: React.FC<Props> = ({
     onPageChange(page);
   };
 
+  let pagesToShow: number[] = [];
+  if (totalPages <= 3) {
+    pagesToShow = getNumbers(1, totalPages);
+  } else if (currentPage <= 3) {
+    pagesToShow = getNumbers(1, 3);
+  } else if (currentPage >= totalPages - 2) {
+    pagesToShow = getNumbers(totalPages - 2, totalPages);
+  } else {
+    pagesToShow = getNumbers(currentPage - 1, currentPage + 1);
+  }
+
   return (
     <div className={styles.pagination}>
       <ul className={styles.pagination_ul}>
@@ -47,7 +58,8 @@ export const Pagination: React.FC<Props> = ({
             className={classNames(
               styles.page_link,
               styles.page_arrow,
-              styles.left
+              styles.left,
+              { [styles.prev_disabled]: currentPage === 1 }
             )}
             href="#prev"
             data-current-page={currentPage - 1}
@@ -55,7 +67,7 @@ export const Pagination: React.FC<Props> = ({
             onClick={handleSetPage}
           ></a>
         </li>
-        {getNumbers(1, totalPages).map((page) => (
+        {pagesToShow.map((page) => (
           <li
             key={page}
             className={classNames(styles.page_item, {
@@ -79,7 +91,8 @@ export const Pagination: React.FC<Props> = ({
             className={classNames(
               styles.page_link,
               styles.page_arrow,
-              styles.right
+              styles.right,
+              { [styles.next_disabled]: currentPage === totalPages }
             )}
             href="#next"
             data-current-page={currentPage + 1}

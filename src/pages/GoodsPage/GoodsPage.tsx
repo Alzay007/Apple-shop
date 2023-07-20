@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useAppSelector } from 'features/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { resetPagination } from 'features/reducers/paginationSlice';
 
 import { Loader } from 'components/Loader';
 import { GoodsList } from 'components/GoodsList';
 import { Title } from 'components/Title';
-import { SortField } from 'components/SortField';
 import { SortType } from 'types/SortType';
 import { sortItems } from 'helpers/sortFunc';
 import { AuthSnackbar } from 'components/AuthSnackBar';
@@ -17,12 +17,16 @@ interface Props {
 }
 
 export const GoodsPage: React.FC<Props> = ({ title, category }) => {
+  const dispatch = useAppDispatch();
   const { isLoading, goods } = useAppSelector((state) => state.goodsReducer);
+  const { perPage } = useAppSelector((state) => state.paginationReducer);
   const [sortBy, setSortBy] = useState<SortType>(SortType.DEFAULT);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+
+    dispatch(resetPagination());
+  }, [category, perPage]);
 
   const handleStatus = (value: SortType) => {
     setSortBy(value);
@@ -35,9 +39,16 @@ export const GoodsPage: React.FC<Props> = ({ title, category }) => {
   return (
     <section className={styles.goods}>
       <Title title={title} count={goodsList.length} />
-      <SortField sortBy={sortBy} handleStatus={handleStatus} />
 
-      {isLoading ? <Loader /> : <GoodsList itemsList={sortedGoods} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <GoodsList
+          itemsList={sortedGoods}
+          sortBy={sortBy}
+          handleStatus={handleStatus}
+        />
+      )}
 
       <AuthSnackbar />
     </section>

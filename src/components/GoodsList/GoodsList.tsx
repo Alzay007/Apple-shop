@@ -4,15 +4,23 @@ import { Card } from '../Card';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { setPage, setPerPage } from 'features/reducers/paginationSlice';
 import { ItemSelect } from '../ItemSelect';
+import { SortField } from 'components/SortField';
 import { Pagination } from '../Pagination';
+import { SortType } from 'types/SortType';
 
 import styles from './GoodsList.module.scss';
 
 interface Props {
   itemsList: Product[];
+  sortBy: SortType;
+  handleStatus: (value: SortType) => void;
 }
 
-export const GoodsList: React.FC<Props> = ({ itemsList }) => {
+export const GoodsList: React.FC<Props> = ({
+  itemsList,
+  sortBy,
+  handleStatus
+}) => {
   const dispatch = useAppDispatch();
   const { page, perPage } = useAppSelector((state) => state.paginationReducer);
 
@@ -34,7 +42,10 @@ export const GoodsList: React.FC<Props> = ({ itemsList }) => {
 
   return (
     <>
-      <ItemSelect count={itemsList.length} />
+      <div className={styles.options}>
+        <ItemSelect count={itemsList.length} />
+        <SortField sortBy={sortBy} handleStatus={handleStatus} />
+      </div>
 
       <div className={styles.container}>
         {itemsList.slice(start - 1, end).map((item) => (

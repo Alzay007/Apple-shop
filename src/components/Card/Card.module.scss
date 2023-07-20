@@ -2,9 +2,7 @@
 @import 'styles/utils/vars';
 
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column;
 
   height: 440px;
   width: 288px;

@@ -30,7 +30,7 @@ export const ItemSelect: React.FC<Props> = ({ count }) => {
 
   return (
     <div>
-      <p className={styles.title_select_text}>{'Items on page'}</p>
+      <p className={styles.title_select_text}>Items on page</p>
 
       <select
         value={isCorrect ? perPage : 'All'}

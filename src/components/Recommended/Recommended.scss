@@ -3,11 +3,11 @@
 
 .recommended {
   max-width: 288px;
-  margin: 57px 0;
+  margin: 57px auto;
 
   @include onTablet {
     max-width: 592px;
-    margin: 64px 0;
+    margin: 64px auto;
   }
 
   @include onDesktop {
