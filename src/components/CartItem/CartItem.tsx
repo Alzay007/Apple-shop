@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-import deleteCross from '../../assets/icons/cross.svg';
-import plus from '../../assets/icons/plus.svg';
-import minus from '../../assets/icons/minus.svg';
+import classNames from 'classnames';
 import {
   selectItems,
   useAppDispatch,
@@ -16,7 +14,9 @@ import {
 import { BASE_URL } from 'features/reducers/thunk';
 
 import styles from './CartItem.module.scss';
-import classNames from 'classnames';
+import deleteCross from '../../assets/icons/cross.svg';
+import plus from '../../assets/icons/plus.svg';
+import minus from '../../assets/icons/minus.svg';
 
 interface Props {
   name: string;

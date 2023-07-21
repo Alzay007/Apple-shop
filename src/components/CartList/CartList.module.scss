@@ -1,13 +1,14 @@
 @import 'styles/utils/mixins';
 
 .CartList {
-  gap: 16px;
-  max-width: 752px;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+
+  max-width: 752px;
   margin-bottom: 32px;
 
-  @media (min-width: 1200px) {
+  @include onDesktop {
     margin-right: 16px;
     margin-bottom: 0;
   }

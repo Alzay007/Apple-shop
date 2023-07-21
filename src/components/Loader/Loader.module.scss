@@ -1,25 +1,42 @@
 @import 'styles/utils/mixins';
 
 .loader {
-  @include flex-center;
-  width: 100%;
+  display: grid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-  &__content {
-    border-radius: 50%;
-    width: 2em;
-    height: 2em;
-    margin: 1em auto;
-    border: 0.3em solid #ddd;
-    border-left-color: #000;
-    animation: load8 1.2s infinite linear;
+  width: 50px;
+  height: 50px;
+
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+
+  &::before,
+  &::after {
+    content: "";
+    grid-area: 1/1;
+    --c: radial-gradient(farthest-side, #057C93 92%, #0000);
+    background: 
+      var(--c) 50% 0, 
+      var(--c) 50% 100%, 
+      var(--c) 100% 50%, 
+      var(--c) 0 50%;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    animation: s2 1s infinite;
+  }
+
+  &::before {
+    margin: 4px;
+    filter: hue-rotate(45deg);
+    background-size: 8px 8px;
+    animation-timing-function: linear;
   }
 }
 
-@keyframes load8 {
-  0% {
-    transform: rotate(0deg);
-  }
+@keyframes s2 {
   100% {
-    transform: rotate(360deg);
+    transform: rotate(.5turn);
   }
 }
