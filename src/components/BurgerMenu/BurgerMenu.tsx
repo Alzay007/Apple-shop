@@ -100,39 +100,44 @@ export const BurgerMenu: React.FC<Props> = ({
       </nav>
 
       <div className={styles.burger__bottom}>
-        <NavLink
-          to="/cart"
-          className={styles.burger__basket}
-          onClick={() => handlerClick(burgerMenuSelected)}
-        >
-          <img
-            src={bag}
-            alt=""
-            className={styles.basket_img}
+        <div className={styles.burger__wrapper}>
+          <NavLink
+            to="/login"
+            className={styles.burger__login}
             onClick={() => handlerClick(burgerMenuSelected)}
-          />
-        </NavLink>
+          >
+            <img
+              src={login}
+              alt=""
+              className={styles.count_img}
+              onClick={() => handlerClick(burgerMenuSelected)}
+            />
+            {isAuth && <div className={styles.burger__signIn}></div>}
+          </NavLink>
+        </div>
 
-        {items.length > 0 && (
-          <div className={styles.burger__count}>
-            <Counter count={items.length} />
-          </div>
-        )}
+        <div className={styles.burger__divider}></div>
 
-        <NavLink
-          to="/login"
-          className={styles.burger__login}
-          onClick={() => handlerClick(burgerMenuSelected)}
-        >
-          <img
-            src={login}
-            alt=""
-            className={styles.count_img}
+        <div className={styles.burger__wrapper}>
+          <NavLink
+            to="/cart"
+            className={styles.burger__basket}
             onClick={() => handlerClick(burgerMenuSelected)}
-          />
-        </NavLink>
+          >
+            <img
+              src={bag}
+              alt=""
+              className={styles.basket_img}
+              onClick={() => handlerClick(burgerMenuSelected)}
+            />
 
-        {isAuth && <div className={styles.burger__signIn}></div>}
+            {items.length > 0 && (
+              <div className={styles.burger__count}>
+                <Counter count={items.length} />
+              </div>
+            )}
+          </NavLink>
+        </div>
       </div>
     </div>
   );

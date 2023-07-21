@@ -2,6 +2,8 @@
 @import 'styles/utils/mixins.scss';
 
 .burger {
+  @include flex-column;
+  justify-content: space-between;
   background-color: $colorWhite;
   height: 100vh;
   overflow-x: hidden;
@@ -59,7 +61,7 @@
   &__link {
     font-family: "Nanum Myeongjo";
     font-weight: 800;
-    font-size: 12px;
+    font-size: 13px;
     color: $colorSecondary;
 
     letter-spacing: 0.04em;
@@ -75,9 +77,8 @@
   }
 
   &__bottom {
-    @include flex-center;
-    position: absolute;
-    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
 
     height: 70px;
     width: 100%;
@@ -89,7 +90,7 @@
     position: absolute;
 
     bottom: 38px;
-    left: 88px;
+    left: 28px;
 
     width: 18px;
     height: 18px;
@@ -99,38 +100,39 @@
     z-index: 1;
   }
 
+  &__basket {
+    @include flex-center;
+    position: relative;
+
+    height: 70px;
+
+    &:focus {
+      border-bottom: 2px solid $colorPrimary;
+    }
+  }
+
   &__count {
     position: absolute;
 
     bottom: 38px;
-    right: 58px;
-  }
-
-  &__basket {
-    @include flex-center;
-    position: absolute;
     right: 0;
-
-    width: 50%;
-    height: 70px;
-    border-left: 1px solid $colorElements;
-
-    &:focus {
-      border-bottom: 2px solid $colorPrimary;
-    }
   }
 
   &__login {
     @include flex-center;
-    position: absolute;
-    left: 0;
+    position: relative;
 
-    width: 50%;
     height: 70px;
 
     &:focus {
       border-bottom: 2px solid $colorPrimary;
     }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 100%;
+    background-color: $colorElements;
   }
 }
 
