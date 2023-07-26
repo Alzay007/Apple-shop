@@ -1,3 +1,76 @@
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
+
+.container {
+  width: 360px;
+  padding: 40px 50px;
+  background-color: #f2f2f2;
+  border-radius: 15px;
+
+  @include onMobile {
+    width: 260px;
+    padding: 20px 30px;
+  }
+
+  &__close {
+    position: absolute;
+    right: 22px;
+    top: 10px;
+    width: 28px;
+    height: 28px;
+    opacity: 0.3;
+
+    @include onMobile {
+      top: 2px;
+      right: 16px;
+      width: 22px;
+      height: 22px;
+    }
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    &::after, 
+    &::before {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 28px;
+      width: 2px;
+      background-color: #333;
+
+      @include onMobile {
+        height: 22px;
+      }
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__title {
+    font-size: 28px;
+    color: #555;
+    line-height: 1.2;
+  
+    text-align: center;
+    margin-bottom: 28px;
+
+    @include onMobile {
+      font-size: 22px;
+      line-height: 1.1;
+      margin-bottom: 20;
+    }
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -5,8 +78,132 @@
 
   margin-bottom: 24px;
 
+  &__label {
+    @include onMobile {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__input {
+    height: 42px;
+
+    @include onMobile {
+      height: 32px;
+    }
+  }
+
   &__btn {
-    width: 120px;
-    margin: 0 auto !important;
+    height: 42px !important;
+
+    @include onMobile {
+      height: 32px !important;
+    }
+  }
+
+  &__text {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+
+    margin-bottom: 24px;
+
+    @include onMobile {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__signUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+
+    &_bn {
+      width: 260px;
+      height: 42px;
+      background-color: teal;
+      color: $colorWhite;
+      box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+      border-radius: 2px;
+
+      cursor: pointer;
+
+      @include onMobile {
+        width: 200px;
+        height: 32px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 6px teal;
+      }
+    }
+  }
+
+  &__google {
+    width: 260px;
+    height: 42px;
+
+    background-color: $googleBlue;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+    cursor: pointer;
+
+    @include onMobile {
+      width: 200px;
+      height: 32px;
+    }
+
+    &:hover {
+      box-shadow: 0 0 6px $googleBlue;
+    }
+  
+    &:active {
+      background: #1669F2;
+    }
+
+    &_wrap {
+      position: absolute;
+      margin-top: 1px;
+      margin-left: 1px;
+      width: 40px;
+      height: 40px;
+      border-radius: 2px;
+      background-color: $colorWhite;
+
+      @include onMobile {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &_icon {
+      position: absolute;
+      margin-top: 11px;
+      margin-left: 11px;
+      width: 18px;
+      height: 18px;
+
+      @include onMobile {
+        margin-top: 7px;
+        margin-left: 7px;
+      }
+    }
+
+    &_text {
+      padding-left: 71px;
+      margin: 11px 11px 0 0;
+      color: $colorWhite;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      font-family: "Roboto";
+
+      @include onMobile {
+        padding-left: 50px;
+        margin: 9px 7px 0 0;
+      }
+    }
   }
 }

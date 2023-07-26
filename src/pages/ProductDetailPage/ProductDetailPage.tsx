@@ -19,6 +19,7 @@ export const ProductDetailPage = () => {
   const { itemId = '' } = useParams();
   const { goods } = useAppSelector((state) => state.goodsReducer);
   const [foundProduct, setFoundProduct] = useState<ProductType>();
+  const [currentImg, setCurrentImg] = useState<string>('');
 
   const currentProduct = useMemo(() => {
     return goods.find((product) => product.itemId === itemId);
@@ -33,7 +34,9 @@ export const ProductDetailPage = () => {
 
         try {
           const res = await fetchProduct(category, itemId.trim());
+
           setFoundProduct(res);
+          setCurrentImg('');
         } catch (error) {
           console.log('Error');
         }
@@ -50,7 +53,11 @@ export const ProductDetailPage = () => {
           <DetailsTitle category={category} name={foundProduct.name} />
 
           <div className={styles.detail__wrapper}>
-            <PhotosBlockSelecting product={foundProduct} />
+            <PhotosBlockSelecting
+              product={foundProduct}
+              currentImg={currentImg}
+              setCurrentImg={setCurrentImg}
+            />
 
             <ColorSize product={foundProduct} />
           </div>

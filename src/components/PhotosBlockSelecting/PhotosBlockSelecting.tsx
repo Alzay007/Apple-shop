@@ -1,16 +1,21 @@
-import { useState } from 'react';
-import { ProductType } from '../../types/ProductType';
+import { ProductType } from 'types/ProductType';
 import { BASE_URL } from 'features/reducers/thunk';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import styles from './PhotosBlockSelecting.module.scss';
 
 interface Props {
   product: ProductType | undefined;
+  currentImg: string;
+  setCurrentImg: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const PhotosBlockSelecting: React.FC<Props> = ({ product }) => {
+export const PhotosBlockSelecting: React.FC<Props> = ({
+  product,
+  currentImg,
+  setCurrentImg
+}) => {
   const images = product?.images;
-  const [currentImg, setCurrentImg] = useState('');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (event: any) => {
@@ -19,10 +24,14 @@ export const PhotosBlockSelecting: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={styles.photoBlock}>
-      <img
-        src={currentImg || (images && `${BASE_URL}/${images[0]}`)}
-        className={styles.photoBlock__img}
-      />
+      <TransformWrapper>
+        <TransformComponent>
+          <img
+            src={currentImg || (images && `${BASE_URL}/${images[0]}`)}
+            className={styles.photoBlock__img}
+          />
+        </TransformComponent>
+      </TransformWrapper>
 
       <div className={styles.photoBlock__sidePanel}>
         {images?.map(

@@ -1,7 +1,8 @@
-import logo from '../../assets/icons/succ.png';
-import style from './Modal.module.scss';
 import { useAppDispatch } from '../../features/hooks/hooks';
 import { closeModal } from '../../features/reducers/cartSlice';
+
+import style from './Modal.module.scss';
+import logo from '../../assets/icons/succ.png';
 
 export const ModalWindow = () => {
   const dispatch = useAppDispatch();

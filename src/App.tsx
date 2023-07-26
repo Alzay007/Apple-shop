@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header, ROUTER } from './components/Header';
 import { BurgerMenu } from './components/BurgerMenu';
+import { LoginModal } from './components/LoginModal';
+import { SignUpModal } from './components/SignUpModal';
 import {
   selectItems,
   useAppDispatch,
@@ -14,12 +16,9 @@ import { setUser } from './features/reducers/userSlice';
 import {
   CartPage,
   HomePage,
-  LoginPage,
   NotFoundPage,
-  AccountPage,
   GoodsPage,
   ProductDetailPage,
-  SignUpPage,
   DevelopmentPage
 } from './pages';
 
@@ -28,6 +27,9 @@ import './App.scss';
 function App() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
+  const { isLoginModalOpen, isSignupModalOpen } = useAppSelector(
+    (state) => state.modalReducer
+  );
   const [burgerMenuSelected, setBurgerMenuSelected] = useState(false);
 
   useEffect(() => {
@@ -56,6 +58,14 @@ function App() {
     window.localStorage.setItem('id', JSON.stringify(items));
   }, [items]);
 
+  useEffect(() => {
+    if (isLoginModalOpen || isSignupModalOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isLoginModalOpen, isSignupModalOpen]);
+
   return burgerMenuSelected ? (
     <BurgerMenu
       setBurgerMenuSelected={setBurgerMenuSelected}
@@ -63,6 +73,10 @@ function App() {
     />
   ) : (
     <>
+      {isLoginModalOpen && <LoginModal />}
+
+      {isSignupModalOpen && <SignUpModal />}
+
       <Header
         setBurgerMenuSelected={setBurgerMenuSelected}
         burgerMenuSelected={burgerMenuSelected}
@@ -88,9 +102,6 @@ function App() {
             element={<GoodsPage title={'Watches'} category="watches" />}
           />
           <Route path={ROUTER.cart} element={<CartPage />} />
-          <Route path={ROUTER.login} element={<LoginPage />} />
-          <Route path={ROUTER.signUp} element={<SignUpPage />} />
-          <Route path={ROUTER.account} element={<AccountPage />} />
           <Route
             path={ROUTER.productDetalePage}
             element={<ProductDetailPage />}

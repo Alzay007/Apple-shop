@@ -2,32 +2,27 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@mui/material';
-import { NavLink } from 'react-router-dom';
 
-import { ROUTER } from '../Header';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
-import { closeSnack } from 'features/reducers/snackSlice';
+import { closeSnack, openLoginModal } from 'features/reducers/modalSlice';
 
 export const AuthSnackbar = () => {
   const dispatch = useAppDispatch();
-
-  const { isSnackBarOpen } = useAppSelector((state) => state.snackReducer);
-
-  const LinkButton = () => (
-    <Button color={'primary'}>
-      <NavLink to={ROUTER.login} style={{ color: 'inherit' }}>
-        log in.
-      </NavLink>
-    </Button>
-  );
+  const { isSnackBarOpen } = useAppSelector((state) => state.modalReducer);
 
   const handleClose = () => {
     dispatch(closeSnack());
   };
 
+  const handleOpen = () => {
+    dispatch(openLoginModal());
+  };
+
   const action = (
     <>
-      <LinkButton />
+      <Button color={'primary'} onClick={handleOpen}>
+        log in.
+      </Button>
       <IconButton
         size="small"
         aria-label="close"

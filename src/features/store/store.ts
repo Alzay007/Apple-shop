@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import goodsReducer from '../reducers/goodsSlice';
 import cartReducer from '../reducers/cartSlice';
 import userReducer from '../reducers/userSlice';
-import snackReducer from '../reducers/snackSlice';
+import modalReducer from '../reducers/modalSlice';
 import paginationReducer from '../reducers/paginationSlice';
 
 export const store = configureStore({
@@ -10,7 +10,7 @@ export const store = configureStore({
     goodsReducer,
     cartReducer,
     userReducer,
-    snackReducer,
+    modalReducer,
     paginationReducer
   }
 });

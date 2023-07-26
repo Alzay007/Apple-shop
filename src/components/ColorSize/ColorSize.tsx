@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ProductType } from 'types/ProductType';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { useAuth } from 'features/hooks/useAuth';
-import { openSnackBar } from 'features/reducers/snackSlice';
+import { openSnackBar } from 'features/reducers/modalSlice';
 import { addItem, removeItem } from 'features/reducers/cartSlice';
 
 import styles from './ColorSize.module.scss';

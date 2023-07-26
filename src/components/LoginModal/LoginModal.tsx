@@ -1,30 +1,30 @@
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup
 } from 'firebase/auth';
 import { getAuth } from 'firebase/auth';
-import { useState } from 'react';
 
+import { useAuth } from 'features/hooks/useAuth';
 import { useAppDispatch } from 'features/hooks/hooks';
 import { setUser } from 'features/reducers/userSlice';
-import { ROUTER } from 'components/Header';
-import { ErrorModal } from 'components/ErrorModal';
-import { useAuth } from 'features/hooks/useAuth';
+import { closeSnack } from 'features/reducers/modalSlice';
 import { Form } from 'components/Form';
-import { closeSnack } from 'features/reducers/snackSlice';
+import { ErrorModal } from 'components/ErrorModal';
+import useModalHandler from 'hooks/useModalHandler';
+import { UserProfile } from '../UserProfile';
 
-import styles from './LoginPage.module.scss';
-import icon from 'assets/icons/google.png';
+import styles from './LoginModal.module.scss';
 
-export const LoginPage = () => {
+export const LoginModal = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { isAuth } = useAuth();
+  const { handleCloseModal } = useModalHandler();
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   const auth = getAuth();
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async (email: string, password: string) => {
     try {
@@ -37,7 +37,7 @@ export const LoginPage = () => {
         })
       );
       localStorage.setItem('user', JSON.stringify(user));
-      navigate('/account');
+      handleCloseModal();
       dispatch(closeSnack());
     } catch (error) {
       setErrorMessage('Invalid user/password!');
@@ -56,7 +56,7 @@ export const LoginPage = () => {
         })
       );
       localStorage.setItem('user', JSON.stringify(user));
-      navigate('/account');
+      handleCloseModal();
       dispatch(closeSnack());
     } catch (error) {
       console.log(error);
@@ -68,34 +68,25 @@ export const LoginPage = () => {
     setErrorMessage('');
   };
 
-  return !isAuth ? (
-    <div className={styles.login}>
-      <div className={styles.login__content}>
-        <h1 className={styles.login__title}>Sign In</h1>
-        <Form action={'Sing In'} handleClick={handleLogin} />
-        <p className={styles.login__text}>Don&apos;t have an account?</p>
-
-        <div className={styles.login__signUp}>
-          <div className={styles.login__google} onClick={signInWithGoogle}>
-            <div className={styles.login__google_wrap}>
-              <img src={icon} className={styles.login__google_icon} />
-            </div>
-            <p className={styles.login__google_text}>
-              <b>Sign in with google</b>
-            </p>
-          </div>
-
-          <NavLink to={ROUTER.signUp}>
-            <button className={styles.login__signUp_bn}>Sign Up</button>
-          </NavLink>
+  return (
+    <>
+      <div className={styles.overlay} onClick={handleCloseModal}></div>
+      {!isAuth ? (
+        <div className={styles.login}>
+          <Form
+            action={'Sign In'}
+            handleLogin={handleLogin}
+            handleLoginGoogle={signInWithGoogle}
+            handleCloseModal={handleCloseModal}
+          />
 
           {errorMessage && (
             <ErrorModal message={errorMessage} handleClose={handleCloseError} />
           )}
         </div>
-      </div>
-    </div>
-  ) : (
-    <Navigate to={ROUTER.account} />
+      ) : (
+        <UserProfile handleClose={handleCloseModal} />
+      )}
+    </>
   );
 };

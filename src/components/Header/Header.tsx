@@ -1,8 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
 
 import { Counter } from '../Counter';
-import { useAppSelector } from 'features/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { useAuth } from 'features/hooks/useAuth';
+import { openLoginModal } from 'features/reducers/modalSlice';
 
 import styles from './Header.module.scss';
 import logo from 'assets/icons/logo.png';
@@ -14,7 +15,6 @@ export const ROUTER = {
   tablets: '/tablets',
   watches: '/watches',
   cart: '/cart',
-  login: '/login',
   signUp: '/registration',
   account: '/account',
   support: '/support',
@@ -31,10 +31,15 @@ export const Header: React.FC<Props> = ({
   setBurgerMenuSelected,
   burgerMenuSelected
 }) => {
+  const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cartReducer);
   const { isAuth } = useAuth();
 
   const handlerClick = (value: boolean) => setBurgerMenuSelected(!value);
+
+  const handleShowLoginModal = () => {
+    dispatch(openLoginModal());
+  };
 
   return (
     <div className={styles.header}>
@@ -75,9 +80,9 @@ export const Header: React.FC<Props> = ({
 
         {isAuth && <div className={styles.header__signIn}></div>}
 
-        <NavLink to="/login" className={styles.header__item}>
+        <button className={styles.header__item} onClick={handleShowLoginModal}>
           <div className={styles.header__login}></div>
-        </NavLink>
+        </button>
       </div>
 
       <div

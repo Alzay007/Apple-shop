@@ -102,10 +102,15 @@
     height: 48px;
 
     box-shadow: 0 0 0 1px $colorElements;
+    background: transparent;
 
     @include onDesktop {
       width: 64px;
       height: 64px;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 

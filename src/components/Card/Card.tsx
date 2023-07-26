@@ -5,7 +5,7 @@ import { Product } from 'types/Product';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { addItem, removeItem } from 'features/reducers/cartSlice';
 import { BASE_URL } from 'features/reducers/thunk';
-import { openSnackBar } from 'features/reducers/snackSlice';
+import { openSnackBar } from 'features/reducers/modalSlice';
 import { useAuth } from 'features/hooks/useAuth';
 
 import styles from './Card.module.scss';
