@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Product } from 'types/Product';
 import { Card } from '../Card';
-import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
-import { setPage, setPerPage } from 'features/reducers/paginationSlice';
 import { ItemSelect } from '../ItemSelect';
 import { SortField } from 'components/SortField';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { setPage, setPerPage } from 'features/reducers/paginationSlice';
 import { Pagination } from '../Pagination';
 import { SortType } from 'types/SortType';
 

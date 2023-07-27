@@ -24,6 +24,10 @@
     margin-bottom: 24px;
   }
 
+  &__swiper {
+    padding-bottom: 10px;
+  }
+
   &__subtitle {
     font-family: 'Mont-Bold';
     font-weight: 800;
@@ -48,9 +52,8 @@
 
     border: 1px solid $colorElements;
     background-image: url(../../assets/icons/next.svg);
+    @include background-center;
     transform: rotate(180deg);
-    background-repeat: no-repeat;
-    background-position: center;
 
     &:hover {
       border: 1px solid #b4bdc3;
@@ -63,8 +66,7 @@
 
     border: 1px solid $colorElements;
     background-image: url(../../assets/icons/next.svg);
-    background-repeat: no-repeat;
-    background-position: center;
+    @include background-center;
 
     &:hover {
       border: 1px solid #b4bdc3;

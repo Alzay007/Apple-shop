@@ -4,23 +4,21 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
-import { closeSnack, openLoginModal } from 'features/reducers/modalSlice';
+import { closeSnack } from 'features/reducers/modalSlice';
+import useModalHandler from 'hooks/useModalHandler';
 
 export const AuthSnackbar = () => {
   const dispatch = useAppDispatch();
   const { isSnackBarOpen } = useAppSelector((state) => state.modalReducer);
+  const { handleOpenModal } = useModalHandler();
 
   const handleClose = () => {
     dispatch(closeSnack());
   };
 
-  const handleOpen = () => {
-    dispatch(openLoginModal());
-  };
-
   const action = (
     <>
-      <Button color={'primary'} onClick={handleOpen}>
+      <Button color={'primary'} onClick={() => handleOpenModal()}>
         log in.
       </Button>
       <IconButton

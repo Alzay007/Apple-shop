@@ -8,3 +8,16 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 9;
 }
+
+.fileInput {
+  display: none;
+}
+
+.nameInput {
+  width: 180px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #ccc; /* Add a border for a visual indication */
+  border-radius: 4px; /* Round the corners of the input */
+  font-size: 16px;
+}

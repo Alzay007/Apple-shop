@@ -68,8 +68,7 @@
   &__arrow {
     background-image: url(../../assets/icons/banner-button-prev.svg);
     height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    @include background-center;
   }
 
   &:hover {
@@ -102,8 +101,7 @@
   &__arrow {
     background-image: url(../../assets/icons/banner-button-next.svg);
     height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    @include background-center;
   }
 
   &:hover {

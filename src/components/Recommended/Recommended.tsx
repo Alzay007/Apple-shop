@@ -36,6 +36,7 @@ export const RecommendedGoods: React.FC<Props> = ({ category }) => {
           nextEl: '.recommended__next'
         }}
         loop={true}
+        className="recommended__swiper"
         breakpoints={{
           320: {
             slidesPerView: 1,

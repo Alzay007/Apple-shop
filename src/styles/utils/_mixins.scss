@@ -40,6 +40,11 @@
   background-size: contain;
 }
 
+@mixin background-center {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 @mixin hover-scale($scale-factor: 1.1) {
   &:hover {
     transform: scale($scale-factor);

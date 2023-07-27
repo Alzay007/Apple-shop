@@ -7,10 +7,10 @@ import {
   FormHelperText
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import useInput from 'hooks/useInput';
-import { validateEmail } from 'helpers/validateFunc';
+import { validateEmail, validatePassword } from 'helpers/validateFunc';
 import { useAppDispatch } from 'features/hooks/hooks';
 import {
   closeSignupModal,
@@ -41,6 +41,7 @@ export const Form: React.FC<Props> = ({
 
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
 
   const buttonText = useMemo(
     () => (action === 'Sign In' ? 'Sign Up' : 'Sign In'),
@@ -57,17 +58,19 @@ export const Form: React.FC<Props> = ({
 
   const handleButtonClick = () => {
     const isEmailValid = validateEmail(email.value);
+    const isPasswordValid = validatePassword(password.value);
 
     setIsEmailValid(isEmailValid);
+    setIsPasswordValid(isPasswordValid);
 
-    if (isEmailValid) {
+    if (isEmailValid && isPasswordValid) {
       handleLogin(email.value, password.value);
     }
   };
 
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const handleTogglePasswordVisibility = useCallback(() => {
+    setShowPassword((prevState) => !prevState);
+  }, []);
 
   const handleChangeForm = () => {
     if (action === 'Sign In') {
@@ -134,6 +137,12 @@ export const Form: React.FC<Props> = ({
             )
           }}
         />
+        {!isPasswordValid && (
+          <FormHelperText error>
+            Password must be at least 8 characters long and should not contain
+            spaces.
+          </FormHelperText>
+        )}
 
         <Button
           className={styles.form__btn}

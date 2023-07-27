@@ -4,12 +4,16 @@ interface UserState {
   email: string | null;
   token: string | null;
   id: string | null;
+  name: string;
+  avatar: string;
 }
 
 const initialState: UserState = {
   email: null,
   token: null,
-  id: null
+  id: null,
+  name: 'John Doe',
+  avatar: 'https://example.com/avatar.jpg'
 };
 
 export const userSlice = createSlice({
@@ -25,10 +29,17 @@ export const userSlice = createSlice({
       state.email = null;
       state.token = null;
       state.id = null;
+    },
+    setUserName(state, action) {
+      state.name = action.payload;
+    },
+    setAvatar(state, action) {
+      state.avatar = action.payload;
     }
   }
 });
 
 export default userSlice.reducer;
 
-export const { setUser, logoutUser } = userSlice.actions;
+export const { setUser, logoutUser, setUserName, setAvatar } =
+  userSlice.actions;

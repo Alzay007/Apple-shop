@@ -61,8 +61,7 @@ ul > li {
   }
 
   &_arrow {
-    background-repeat: no-repeat;
-    background-position: center;
+    @include background-center;
     padding: 16px 19px;
   }
 }

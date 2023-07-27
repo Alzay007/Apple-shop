@@ -186,8 +186,7 @@
     border-right: 1px solid $colorElements;
 
     background-image: url(../../assets/icons/union.svg);
-    background-repeat: no-repeat;
-    background-position: center;
+    @include background-center;
     cursor: pointer;
 
     @include onTablet {

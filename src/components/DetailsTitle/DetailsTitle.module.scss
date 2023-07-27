@@ -26,8 +26,7 @@
   height: 16px;
   width: 16px;
 
-  background-repeat: no-repeat;
-  background-position: center;
+  @include background-center;
   background-image: url(../../assets/icons/house.svg);
 
   margin-right: 14px;
@@ -37,8 +36,7 @@
   height: 16px;
   width: 16px;
 
-  background-repeat: no-repeat;
-  background-position: center;
+  @include background-center;
   background-image: url(../../assets/icons/arrowRight.svg);
 
   margin-right: 14px;
@@ -70,8 +68,7 @@
   width: 16px;
   height: 16px;
 
-  background-repeat: no-repeat;
-  background-position: center;
+  @include background-center;
   background-image: url(../../assets/icons/greyArrowLeft.svg);
 
   margin-right: 15px;
