@@ -92,6 +92,7 @@ export const Form: React.FC<Props> = ({
           placeholder="Email"
           autoComplete="off"
           {...email}
+          required
           InputLabelProps={{
             classes: {
               root: styles.form__label
@@ -113,6 +114,7 @@ export const Form: React.FC<Props> = ({
           type={showPassword ? 'text' : 'password'}
           placeholder="Password"
           {...password}
+          required
           InputLabelProps={{
             classes: {
               root: styles.form__label
@@ -152,6 +154,8 @@ export const Form: React.FC<Props> = ({
             <b>Sign in with google</b>
           </p>
         </div>
+
+        <div className={styles.form__line}></div>
 
         <button className={styles.form__signUp_bn} onClick={handleChangeForm}>
           {buttonText}

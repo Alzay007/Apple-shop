@@ -8,14 +8,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useAppDispatch } from 'features/hooks/hooks';
 import { logoutUser } from 'features/reducers/userSlice';
 
+import styles from './UserProfile.module.scss';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: 360,
-    margin: 'auto',
+    width: 320,
     backgroundColor: 'white',
     borderRadius: 15,
     padding: theme.spacing(2)
@@ -59,38 +60,40 @@ export const UserProfile: React.FC<Props> = ({ handleClose }) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Button
-        className={classes.closeButton}
-        color="default"
-        onClick={handleClose}
-      >
-        <CloseIcon />
-      </Button>
-      <Avatar
-        alt="User Avatar"
-        src={user.avatarUrl}
-        className={classes.avatar}
-      />
-      <div>{user.name}</div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        startIcon={<LockIcon />}
-        onClick={handlePasswordChange}
-      >
-        Change Password
-      </Button>
-      <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        startIcon={<ExitToAppIcon />}
-        onClick={handleLogOut}
-      >
-        Logout
-      </Button>
+    <div className={styles.container}>
+      <div className={classes.root}>
+        <Button
+          className={classes.closeButton}
+          color="default"
+          onClick={handleClose}
+        >
+          <CloseIcon />
+        </Button>
+        <Avatar
+          alt="User Avatar"
+          src={user.avatarUrl}
+          className={classes.avatar}
+        />
+        <div>{user.name}</div>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          startIcon={<LockIcon />}
+          onClick={handlePasswordChange}
+        >
+          Change Password
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          startIcon={<ExitToAppIcon />}
+          onClick={handleLogOut}
+        >
+          Logout
+        </Button>
+      </div>
     </div>
   );
 };

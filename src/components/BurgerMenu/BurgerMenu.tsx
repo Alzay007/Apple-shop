@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { Counter } from '../Counter/Counter';
-import { useAppSelector } from 'features/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { useAuth } from 'features/hooks/useAuth';
+import { openLoginModal } from 'features/reducers/modalSlice';
 
 import styles from './BurgerMenu.module.scss';
-import logo from '../../assets/icons/logo.png';
-import cross from '../../assets/icons/cross.svg';
-import bag from '../../assets/icons/bag.svg';
-import login from '../../assets/icons/login.svg';
+import logo from 'assets/icons/logo.png';
+import cross from 'assets/icons/cross.svg';
+import bag from 'assets/icons/bag.svg';
+import login from 'assets/icons/login.svg';
 
 interface Props {
   setBurgerMenuSelected: (value: boolean) => void;
@@ -18,10 +19,14 @@ export const BurgerMenu: React.FC<Props> = ({
   setBurgerMenuSelected,
   burgerMenuSelected
 }) => {
+  const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cartReducer);
   const { isAuth } = useAuth();
 
-  const handlerClick = (value: boolean) => setBurgerMenuSelected(!value);
+  const handlerClick = (value: boolean) => {
+    setBurgerMenuSelected(!value);
+    dispatch(openLoginModal());
+  };
 
   return (
     <div className={styles.burger}>
@@ -101,8 +106,7 @@ export const BurgerMenu: React.FC<Props> = ({
 
       <div className={styles.burger__bottom}>
         <div className={styles.burger__wrapper}>
-          <NavLink
-            to="/login"
+          <button
             className={styles.burger__login}
             onClick={() => handlerClick(burgerMenuSelected)}
           >
@@ -113,7 +117,7 @@ export const BurgerMenu: React.FC<Props> = ({
               onClick={() => handlerClick(burgerMenuSelected)}
             />
             {isAuth && <div className={styles.burger__signIn}></div>}
-          </NavLink>
+          </button>
         </div>
 
         <div className={styles.burger__divider}></div>

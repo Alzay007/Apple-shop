@@ -121,6 +121,7 @@
   &__login {
     @include flex-center;
     position: relative;
+    background-color: transparent;
 
     height: 70px;
 
