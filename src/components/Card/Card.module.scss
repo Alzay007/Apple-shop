@@ -119,9 +119,7 @@
 
   &_star {
     background-image: url('../../assets/icons/star.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    @include background-center-contain;
 
     width: 15px;
     height: 15px;

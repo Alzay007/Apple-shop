@@ -12,14 +12,14 @@ import { useMemo, useState } from 'react';
 import useInput from 'hooks/useInput';
 import { validateEmail } from 'helpers/validateFunc';
 import { useAppDispatch } from 'features/hooks/hooks';
+import {
+  closeSignupModal,
+  openSignupModal
+} from 'features/reducers/modalSlice';
+import useModalHandler from 'hooks/useModalHandler';
 
 import styles from './Form.module.scss';
 import icon from 'assets/icons/google.png';
-import {
-  closeSignupModal,
-  openLoginModal,
-  openSignupModal
-} from 'features/reducers/modalSlice';
 
 interface Props {
   action: string;
@@ -37,6 +37,7 @@ export const Form: React.FC<Props> = ({
   const dispatch = useAppDispatch();
   const email = useInput('');
   const password = useInput('');
+  const { handleOpenModal } = useModalHandler();
 
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -74,7 +75,7 @@ export const Form: React.FC<Props> = ({
       dispatch(openSignupModal());
     } else {
       dispatch(closeSignupModal());
-      dispatch(openLoginModal());
+      handleOpenModal();
     }
   };
 

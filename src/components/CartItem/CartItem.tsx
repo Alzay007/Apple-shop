@@ -14,9 +14,9 @@ import {
 import { BASE_URL } from 'features/reducers/thunk';
 
 import styles from './CartItem.module.scss';
-import deleteCross from '../../assets/icons/cross.svg';
-import plus from '../../assets/icons/plus.svg';
-import minus from '../../assets/icons/minus.svg';
+import deleteCross from 'assets/icons/cross.svg';
+import plus from 'assets/icons/plus.svg';
+import minus from 'assets/icons/minus.svg';
 
 interface Props {
   name: string;

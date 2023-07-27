@@ -1,9 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
-
 import { Counter } from '../Counter';
-import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { useAppSelector } from 'features/hooks/hooks';
 import { useAuth } from 'features/hooks/useAuth';
-import { openLoginModal } from 'features/reducers/modalSlice';
+import useModalHandler from 'hooks/useModalHandler';
 
 import styles from './Header.module.scss';
 import logo from 'assets/icons/logo.png';
@@ -15,7 +14,6 @@ export const ROUTER = {
   tablets: '/tablets',
   watches: '/watches',
   cart: '/cart',
-  signUp: '/registration',
   account: '/account',
   support: '/support',
   contacts: '/contacts',
@@ -31,15 +29,11 @@ export const Header: React.FC<Props> = ({
   setBurgerMenuSelected,
   burgerMenuSelected
 }) => {
-  const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cartReducer);
   const { isAuth } = useAuth();
+  const { handleOpenModal } = useModalHandler();
 
   const handlerClick = (value: boolean) => setBurgerMenuSelected(!value);
-
-  const handleShowLoginModal = () => {
-    dispatch(openLoginModal());
-  };
 
   return (
     <div className={styles.header}>
@@ -80,7 +74,10 @@ export const Header: React.FC<Props> = ({
 
         {isAuth && <div className={styles.header__signIn}></div>}
 
-        <button className={styles.header__item} onClick={handleShowLoginModal}>
+        <button
+          className={styles.header__item}
+          onClick={() => handleOpenModal()}
+        >
           <div className={styles.header__login}></div>
         </button>
       </div>

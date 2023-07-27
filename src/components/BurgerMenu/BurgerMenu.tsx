@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { Counter } from '../Counter/Counter';
-import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
+import { useAppSelector } from 'features/hooks/hooks';
 import { useAuth } from 'features/hooks/useAuth';
-import { openLoginModal } from 'features/reducers/modalSlice';
+import useModalHandler from 'hooks/useModalHandler';
 
 import styles from './BurgerMenu.module.scss';
 import logo from 'assets/icons/logo.png';
@@ -19,13 +19,12 @@ export const BurgerMenu: React.FC<Props> = ({
   setBurgerMenuSelected,
   burgerMenuSelected
 }) => {
-  const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cartReducer);
   const { isAuth } = useAuth();
+  const { handleOpenModal } = useModalHandler();
 
   const handlerClick = (value: boolean) => {
     setBurgerMenuSelected(!value);
-    dispatch(openLoginModal());
   };
 
   return (
@@ -108,11 +107,11 @@ export const BurgerMenu: React.FC<Props> = ({
         <div className={styles.burger__wrapper}>
           <button
             className={styles.burger__login}
-            onClick={() => handlerClick(burgerMenuSelected)}
+            onClick={() => handleOpenModal()}
           >
             <img
               src={login}
-              alt=""
+              alt="login icon"
               className={styles.count_img}
               onClick={() => handlerClick(burgerMenuSelected)}
             />

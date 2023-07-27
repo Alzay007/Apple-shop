@@ -35,14 +35,12 @@ export const AuthSnackbar = () => {
   );
 
   return (
-    <div>
-      <Snackbar
-        open={isSnackBarOpen}
-        autoHideDuration={4000}
-        onClose={handleClose}
-        message={'To add an item to your cart, you need to '}
-        action={action}
-      />
-    </div>
+    <Snackbar
+      open={isSnackBarOpen}
+      autoHideDuration={2500}
+      onClose={handleClose}
+      message={'To add an item to your cart, you need to '}
+      action={action}
+    />
   );
 };
