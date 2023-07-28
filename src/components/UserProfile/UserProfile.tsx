@@ -6,6 +6,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import EditIcon from '@mui/icons-material/Edit';
 import { makeStyles } from '@material-ui/core/styles';
+import {
+  EmailAuthProvider,
+  getAuth,
+  reauthenticateWithCredential,
+  updatePassword
+} from 'firebase/auth';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import {
@@ -13,21 +20,11 @@ import {
   setAvatar,
   setUserName
 } from 'features/reducers/userSlice';
+import { validatePassword } from 'helpers/validateFunc';
 
 import styles from './UserProfile.module.scss';
-import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: 320,
-    backgroundColor: 'white',
-    borderRadius: 15,
-    padding: theme.spacing(2)
-  },
   avatar: {
     width: theme.spacing(12),
     height: theme.spacing(12),
@@ -48,25 +45,28 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.primary.light
     }
-  },
-  name: {
-    margin: theme.spacing(2),
-    fontSize: '1.1rem',
-    fontWeight: 'bold'
   }
 }));
 
 interface Props {
   handleClose: () => void;
+  setErrorMessage: Dispatch<SetStateAction<string>>;
 }
 
-export const UserProfile: React.FC<Props> = ({ handleClose }) => {
+export const UserProfile: React.FC<Props> = ({
+  handleClose,
+  setErrorMessage
+}) => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const { name, avatar } = useAppSelector((state) => state.userReducer);
+  const auth = getAuth();
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [newName, setNewName] = useState(name);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [isEditingPassword, setIsEditingPassword] = useState(false);
 
   const handlePhotoInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -90,13 +90,73 @@ export const UserProfile: React.FC<Props> = ({ handleClose }) => {
     handleClose();
   };
 
-  const handlePasswordChange = () => {
-    console.log('Password change clicked!');
+  const validateCurrentPassword = async (currentPassword: string) => {
+    try {
+      const user = auth.currentUser;
+      if (!user) {
+        return false;
+      }
+
+      if (user.email !== null) {
+        const credentials = EmailAuthProvider.credential(
+          user.email,
+          currentPassword
+        );
+        await reauthenticateWithCredential(user, credentials);
+
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log('invalid current password');
+      return false;
+    }
+  };
+
+  const handleChangePassword = async (newPassword: string) => {
+    try {
+      const user = auth.currentUser;
+
+      if (user) {
+        const isValidCurrentPassword = await validateCurrentPassword(
+          currentPassword
+        );
+
+        const isValidPassword = validatePassword(newPassword);
+
+        if (!isValidPassword) {
+          console.log(
+            'Password must be at least 8 characters long and not contain spaces.'
+          );
+          setErrorMessage('Invalid password');
+          return;
+        }
+
+        if (!isValidCurrentPassword) {
+          setErrorMessage('Invalid current password');
+          return;
+        }
+
+        await updatePassword(user, newPassword);
+        setIsEditingPassword(false);
+      } else {
+        console.log('error');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const hadnleEditPassword = () => {
+    setCurrentPassword('');
+    setNewPassword('');
+    setIsEditingPassword(!isEditingPassword);
   };
 
   return (
     <div className={styles.container}>
-      <div className={classes.root}>
+      <div className={styles.profile}>
         <Button
           className={classes.closeButton}
           color="default"
@@ -111,7 +171,7 @@ export const UserProfile: React.FC<Props> = ({ handleClose }) => {
             type="file"
             accept="image/*"
             onChange={handlePhotoInputChange}
-            className={styles.fileInput}
+            className={styles.profile__fileInput}
           />
           <Button
             variant="outlined"
@@ -123,14 +183,14 @@ export const UserProfile: React.FC<Props> = ({ handleClose }) => {
             Update Photo
           </Button>
         </label>
-        <div className={classes.name}>
+        <div className={styles.profile__name}>
           {isEditingName ? (
             <>
               <input
                 type="text"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                className={styles.nameInput}
+                className={styles.profile__nameInput}
               />
               <Button color="primary" onClick={() => handleNameChange(newName)}>
                 Save
@@ -152,10 +212,36 @@ export const UserProfile: React.FC<Props> = ({ handleClose }) => {
           color="primary"
           className={classes.button}
           startIcon={<LockIcon />}
-          onClick={handlePasswordChange}
+          onClick={() => hadnleEditPassword()}
         >
           Change Password
         </Button>
+        {isEditingPassword && (
+          <form className={styles.profile__password}>
+            <input
+              type="password"
+              placeholder="Current password"
+              autoComplete="off"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              className={styles.profile__passwordInput}
+            />
+            <input
+              type="password"
+              placeholder="New password"
+              autoComplete="off"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className={styles.profile__passwordInput}
+            />
+            <Button
+              color="primary"
+              onClick={() => handleChangePassword(newPassword)}
+            >
+              Save Password
+            </Button>
+          </form>
+        )}
         <Button
           variant="contained"
           color="secondary"

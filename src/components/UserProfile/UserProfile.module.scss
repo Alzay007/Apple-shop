@@ -1,4 +1,5 @@
 @import 'styles/utils/vars';
+@import 'styles/utils/mixins';
 
 .container {
   position: fixed;
@@ -9,15 +10,48 @@
   z-index: 9;
 }
 
-.fileInput {
-  display: none;
-}
+.profile {
+  @include flex-column;
+  position: relative;
+  width: 320px;
+  background-color: $colorWhite;
+  border-radius: 15px;
+  padding: 16px;
 
-.nameInput {
-  width: 180px;
-  height: 30px;
-  padding: 10px;
-  border: 1px solid #ccc; /* Add a border for a visual indication */
-  border-radius: 4px; /* Round the corners of the input */
-  font-size: 16px;
+  &__fileInput {
+    display: none;
+  }
+
+  &__name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 16px;
+  }
+
+  &__nameInput {
+    width: 180px;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  &__password {
+    @include flex-column;
+    gap: 18px;
+  }
+
+  &__passwordInput {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #272626;
+
+    width: 200px;
+    height: 40px;
+    padding: 1.3rem 1.5rem;
+    border-radius: 10px;
+    background-color: rgba(217, 230, 185, 0.816);
+    border: none;
+  }
 }

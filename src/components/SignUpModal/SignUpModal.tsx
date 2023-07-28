@@ -88,7 +88,10 @@ export const SignUpModal = () => {
           )}
         </div>
       ) : (
-        <UserProfile handleClose={handleCloseModal} />
+        <UserProfile
+          handleClose={handleCloseModal}
+          setErrorMessage={setErrorMessage}
+        />
       )}
     </>
   );

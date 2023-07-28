@@ -20,11 +20,10 @@ import styles from './LoginModal.module.scss';
 export const LoginModal = () => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAuth();
+  const auth = getAuth();
   const { handleCloseModal } = useModalHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-
-  const auth = getAuth();
 
   const handleLogin = async (email: string, password: string) => {
     try {
@@ -79,13 +78,16 @@ export const LoginModal = () => {
             handleLoginGoogle={signInWithGoogle}
             handleCloseModal={handleCloseModal}
           />
-
-          {errorMessage && (
-            <ErrorModal message={errorMessage} handleClose={handleCloseError} />
-          )}
         </div>
       ) : (
-        <UserProfile handleClose={handleCloseModal} />
+        <UserProfile
+          handleClose={handleCloseModal}
+          setErrorMessage={setErrorMessage}
+        />
+      )}
+
+      {errorMessage && (
+        <ErrorModal message={errorMessage} handleClose={handleCloseError} />
       )}
     </>
   );
