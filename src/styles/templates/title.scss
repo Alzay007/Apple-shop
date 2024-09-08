@@ -1,0 +1,49 @@
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 24px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__arrow {
+    margin-right: 10px;
+    margin-left: 5px;
+    height: 10px;
+  }
+
+  &__text {
+    font-family: 'Mont';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: $colorSecondary;
+  }
+
+  &__headline {
+    font-family: 'Mont-Bold';
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    color: $colorPrimary;
+
+    @include onTablet {
+      font-size: 48px;
+      line-height: 56px;
+    }
+  }
+
+  &__count {
+    margin-top: 8px;
+    color: $colorSecondary;
+    font-family: 'Mont';
+    font-size: 14px;
+    line-height: 21px;
+  }
+}

@@ -37,7 +37,7 @@ export const AuthSnackbar = () => {
       open={isSnackBarOpen}
       autoHideDuration={2500}
       onClose={handleClose}
-      message={'To add an item to your cart, you need to '}
+      message={'To add an item to your wishlist, you need to '}
       action={action}
     />
   );

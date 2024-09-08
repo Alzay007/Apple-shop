@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Counter } from '../Counter';
 import { useAppSelector } from 'features/hooks/hooks';
 import { useAuth } from 'features/hooks/useAuth';
@@ -13,6 +13,7 @@ export const ROUTER = {
   phones: '/phones',
   tablets: '/tablets',
   watches: '/watches',
+  wishlist: '/wishlist',
   cart: '/cart',
   account: '/account',
   support: '/support',
@@ -30,8 +31,18 @@ export const Header: React.FC<Props> = ({
   burgerMenuSelected
 }) => {
   const { items } = useAppSelector((state) => state.cartReducer);
+  const { favItems } = useAppSelector((state) => state.wishlistReducer);
+  const navigate = useNavigate();
   const { isAuth } = useAuth();
   const { handleOpenModal } = useModalHandler();
+
+  const handleWishlistClick = () => {
+    if (isAuth) {
+      navigate('/wishlist');
+    } else {
+      handleOpenModal();
+    }
+  };
 
   const handlerClick = (value: boolean) => setBurgerMenuSelected(!value);
 
@@ -62,15 +73,23 @@ export const Header: React.FC<Props> = ({
       </nav>
 
       <div className={styles.header__icons}>
-        {isAuth && items.length > 0 && (
-          <div className={styles.header__heart}>
-            <Counter count={items.length} />
-          </div>
-        )}
+        <div className={styles.header__item} onClick={handleWishlistClick}>
+          {isAuth && favItems.length > 0 && (
+            <div className={styles.header__heart}>
+              <Counter count={favItems.length} />
+            </div>
+          )}
+          <div className={styles.header__fav}></div>
+        </div>
 
-        <NavLink to="/cart" className={styles.header__item}>
-          <div className={styles.header__cart}></div>
-        </NavLink>
+        <div className={styles.header__item}>
+          {items.length > 0 && (
+            <div className={styles.header__heart}>
+              <Counter count={items.length} />
+            </div>
+          )}
+          <NavLink to="/cart" className={styles.header__cart}></NavLink>
+        </div>
 
         {isAuth && <div className={styles.header__signIn}></div>}
 

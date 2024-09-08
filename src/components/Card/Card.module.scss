@@ -151,6 +151,26 @@
     border: 1px solid $colorElements;
   }
 
+  &_wishlist {
+    height: 40px;
+    width: 40px;
+    border: 1px solid #b4bdc3;
+    background-color: $colorWhite;
+    background-image: url('../../assets/icons/favourites.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 8px;
+    transition: border 0.3s;
+    &:hover {
+      border-color: $colorPrimary;
+      cursor: pointer;
+    }
+
+    &_heart {
+      background-image: url('../../assets/icons/redHeart.svg');
+    }
+  }
+
   &_buttons {
     margin-top: 16px;
     display: flex;

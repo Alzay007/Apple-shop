@@ -1,0 +1,68 @@
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
+@import 'styles/templates/title';
+
+.cart {
+  max-width: 1136px;
+  padding: 25px 16px 25px;
+
+  @include onTablet {
+    padding: 41px 24px 0px;
+  }
+
+  @include onDesktop {
+    padding: 41px 0 0;
+    margin: 0 auto;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+    font-family: 'Montserrat', sans-serif;
+
+    &_img {
+      width: 160px;
+      height: 160px;
+
+      @include onTablet {
+        width: 240px;
+        height: 240px;
+      }
+    }
+
+    &_title {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      color: $colorPrimary;
+      text-transform: uppercase;
+
+      @include onTablet {
+        font-size: 26px;
+        line-height: 33px;
+      }
+    }
+
+    &_description {
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &__clear {
+    margin-bottom: 30px !important;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @include onDesktop {
+      flex-direction: row;
+    }
+  }
+}

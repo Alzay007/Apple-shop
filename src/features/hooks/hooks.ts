@@ -6,3 +6,5 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const selectItems = (state: RootState) => state.cartReducer.items;
+export const selectFavItems = (state: RootState) =>
+  state.wishlistReducer.favItems;

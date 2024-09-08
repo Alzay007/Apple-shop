@@ -4,6 +4,7 @@ import { Product } from 'types/Product';
 
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { addItem, removeItem } from 'features/reducers/cartSlice';
+import { addFavItem, removeFavItem } from 'features/reducers/wishlistSlice';
 import { BASE_URL } from 'features/reducers/thunk';
 import { openSnackBar } from 'features/reducers/modalSlice';
 import { useAuth } from 'features/hooks/useAuth';
@@ -21,15 +22,26 @@ export const Card: React.FC<Props> = ({
   const { isAuth } = useAuth();
 
   const { items } = useAppSelector((state) => state.cartReducer);
+  const { favItems } = useAppSelector((state) => state.wishlistReducer);
 
   const itemsSet = new Set(items);
+  const favouriteItemsSet = new Set(favItems);
   const isCardInArray = itemsSet.has(id);
+  const isCardInFavouriteArray = favouriteItemsSet.has(id);
 
   const handleSetCardInData = () => {
     if (!isCardInArray) {
       dispatch(addItem(id));
     } else {
       dispatch(removeItem(id));
+    }
+  };
+
+  const handleSetItemInFavourite = () => {
+    if (!isCardInFavouriteArray) {
+      dispatch(addFavItem(id));
+    } else {
+      dispatch(removeFavItem(id));
     }
   };
 
@@ -73,10 +85,16 @@ export const Card: React.FC<Props> = ({
           className={classNames(styles.card_checkout, {
             [styles.card_uncheckout]: isCardInArray
           })}
-          onClick={isAuth ? handleSetCardInData : handleSetOpenSnack}
+          onClick={handleSetCardInData}
         >
           {isCardInArray ? 'Added' : 'Add to cart'}
         </button>
+        <button
+          className={classNames(styles.card_wishlist, {
+            [styles.card_wishlist_heart]: isCardInFavouriteArray
+          })}
+          onClick={isAuth ? handleSetItemInFavourite : handleSetOpenSnack}
+        ></button>
       </div>
     </div>
   );

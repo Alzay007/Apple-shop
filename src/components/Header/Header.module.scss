@@ -97,11 +97,12 @@
   }
 
   &__item {
+    position: relative;
     @include flex-center;
     width: 48px;
     height: 48px;
 
-    box-shadow: 0 0 0 1px $colorElements;
+    border-left: 1px solid $colorSecondary;
     background: transparent;
 
     @include onDesktop {
@@ -114,19 +115,26 @@
     }
   }
 
-  &__cart {
-    background-image: url(../../assets/icons/bag.svg);
+  &__cart,
+  &__fav {
     @include background-center-contain;
+    @include hover-scale;
 
     height: 28px;
     width: 28px;
-
-    @include hover-scale;
 
     @include onDesktop {
       height: 34px;
       width: 34px;
     }
+  }
+
+  &__cart {
+    background-image: url(../../assets/icons/bag.svg);
+  }
+
+  &__fav {
+    background-image: url(../../assets/icons/favourite.svg);
   }
 
   &__login {
@@ -147,13 +155,13 @@
   &__heart {
     position: absolute;
     bottom: 26px;
-    right: 52px;
+    right: 10px;
 
     z-index: 1;
 
     @include onDesktop {
       bottom: 36px;
-      right: 72px;
+      right: 10px;
     }
   }
 
