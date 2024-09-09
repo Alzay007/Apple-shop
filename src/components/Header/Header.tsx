@@ -14,6 +14,7 @@ export const ROUTER = {
   tablets: '/tablets',
   watches: '/watches',
   wishlist: '/wishlist',
+  checkout: '/checkout',
   cart: '/cart',
   account: '/account',
   support: '/support',

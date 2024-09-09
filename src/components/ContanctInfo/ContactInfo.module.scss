@@ -1,0 +1,49 @@
+.contact__info {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+}
+
+.contact-info_input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.contact-info__input::placeholder {
+  color: #aaa;
+}
+
+.contact-info__selected-items {
+  margin-top: 20px;
+}
+
+.contact-info__selected-items h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contact-info__selected-items ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-info__selected-items li {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #555;
+}

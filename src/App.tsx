@@ -18,6 +18,7 @@ import { setUser } from './features/reducers/userSlice';
 import {
   CartPage,
   WishlistPage,
+  CheckoutPage,
   HomePage,
   NotFoundPage,
   GoodsPage,
@@ -116,6 +117,7 @@ function App() {
           />
           <Route path={ROUTER.wishlist} element={<WishlistPage />} />
           <Route path={ROUTER.cart} element={<CartPage />} />
+          <Route path={ROUTER.checkout} element={<CheckoutPage />} />
           <Route
             path={ROUTER.productDetalePage}
             element={<ProductDetailPage />}

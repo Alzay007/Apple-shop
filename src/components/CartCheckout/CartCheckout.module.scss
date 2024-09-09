@@ -5,72 +5,48 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-height: 206px;
+  gap: 16px;
 
-  padding: 20px 0;
+  padding: 23px;
   border: 1px solid $colorElements;
 
-  &__total {
-    font-family: 'Mont-Bold';
-    font-weight: 800;
-    font-size: 32px;
-    color: $colorPrimary;
+  @include onDesktop {
+    width: 368px;
+  }
 
-    line-height: 41px;
+  &__total {
+    @include custom-font-style('Mont-Bold', 800, 32px, 41px);
+    color: $colorPrimary;
     text-align: center;
     letter-spacing: -0.01em;
   }
 
   &__count {
-    font-family: 'Mont';
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
+    @include custom-font-style('Mont', 600, 14px, 21px);
+    color: $colorSecondary;
     text-align: center;
 
-    margin: 5px 23px 16px;
-    color: $colorSecondary;
     padding-bottom: 15px;
     border-bottom: 1px solid $colorElements;
   }
 
   &__button {
-    font-family: 'Mont';
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 21px;
-
+    @include flex-center;
+    @include custom-font-style('Mont', 700, 14px, 21px);
     color: $colorWhite;
     background: $colorPrimary;
 
-    width: 240px;
     height: 48px;
-
-    @include flex-center;
+    width: 240px;
     margin: 0 auto;
-    cursor: pointer;
     transition: 300ms background-color;
-
-    @include onTablet {
-      width: 544px;
-      margin: 0 24px;
-    }
-
-    @media (min-width: 1200px) {
-      width: 320px;
-    }
 
     &:hover {
       box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
     }
 
-    &_disabled {
-      cursor: default;
-      background-color: grey;
-
-      &:hover {
-        box-shadow: none;
-      }
+    @include onTablet {
+      width: 320px;
     }
   }
 }

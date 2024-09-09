@@ -16,6 +16,13 @@
   }
 }
 
+@mixin custom-font-style($font-family, $weight, $size, $line-height) {
+  font-family: $font-family;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;

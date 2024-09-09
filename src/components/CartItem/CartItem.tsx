@@ -53,14 +53,8 @@ export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__info}>
-        <div
-          className={styles.cartItem__delete_button}
-          onClick={handleRemoveItem}
-        >
-          <img
-            src={deleteCross}
-            className={styles.cartItem__delete_button_img}
-          />
+        <div className={styles.cartItem__delete_btn} onClick={handleRemoveItem}>
+          <img src={deleteCross} />
         </div>
 
         <img src={`${BASE_URL}/${image}`} className={styles.cartItem__img} />
@@ -68,26 +62,34 @@ export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
         <p className={styles.cartItem__description}>{name}</p>
       </div>
 
-      <div className={styles.cartItem__count}>
-        <button
-          className={classNames(styles.cartItem__count_button, {
-            [styles.cartItem__count_button_disabled]: count === 1
-          })}
-          onClick={handleCountDown}
-          disabled={count === 1}
-        >
-          <img src={minus} className={styles.cartItem__count_button_symbol} />
-        </button>
-        <div className={styles.cartItem__count_number}>{count}</div>
-        <button
-          className={classNames(styles.cartItem__count_button, {
-            [styles.cartItem__count_button_disabled]: count === 10
-          })}
-          onClick={handleCountUp}
-          disabled={count === 10}
-        >
-          <img src={plus} className={styles.cartItem__count_button_symbol} />
-        </button>
+      <div className={styles.cartItem__quantity}>
+        <div className={styles.cartItem__quantity_control}>
+          <button
+            className={classNames(styles.cartItem__quantity_button, {
+              [styles.cartItem__quantity_button_disabled]: count === 1
+            })}
+            onClick={handleCountDown}
+            disabled={count === 1}
+          >
+            <img
+              src={minus}
+              className={styles.cartItem__quantity_button_symbol}
+            />
+          </button>
+          <span className={styles.cartItem__count}>{count}</span>
+          <button
+            className={classNames(styles.cartItem__quantity_button, {
+              [styles.cartItem__quantity_button_disabled]: count === 5
+            })}
+            onClick={handleCountUp}
+            disabled={count === 5}
+          >
+            <img
+              src={plus}
+              className={styles.cartItem__quantity_button_symbol}
+            />
+          </button>
+        </div>
         <div className={styles.cartItem__price}>{count * price}$</div>
       </div>
     </div>

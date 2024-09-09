@@ -60,13 +60,9 @@
   }
 
   &_title {
-    font-family: 'Mont';
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-    min-height: 42px;
-
     display: inline-block;
+    @include custom-font-style('Mont', 600, 14px, 21px);
+    min-height: 42px;
     vertical-align: top;
     margin-bottom: 8px;
   }

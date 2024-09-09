@@ -2,96 +2,63 @@
 @import 'styles/utils/vars';
 
 .cartItem {
-  width: 288px;
-  height: 160px;
+  display: flex;
+  flex-direction: column;
   border: 1px solid #e2e6e9;
-  padding: 0 16px;
+  padding: 16px;
+  gap: 16px;
 
   @include onTablet {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    height: 128px;
-    width: 592px;
-    padding: 0 24px;
-  }
-
-  @media (min-width: 1200px) {
-    display: flex;
-    align-items: center;
-    width: 752px;
-    height: 128px;
+    padding: 24px;
   }
 
   &__info {
     display: inline-flex;
     align-items: center;
-    margin-top: 23px;
+    gap: 16px;
 
     @include onTablet {
-      margin: 31px 0;
+      gap: 24px;
     }
   }
 
-  &__delete_button {
-    padding-left: 3px;
-    padding-right: 26px;
-  }
-
-  &__delete_button_img {
-    width: 13px;
+  &__delete_btn {
+    width: 16px;
+    height: 16px;
+    padding: 3px;
     cursor: pointer;
   }
 
   &__img {
-    width: 66px;
-    height: 66px;
-    padding: 0 7px;
-
-    margin-bottom: 23px;
-
-    @include onTablet {
-      margin-bottom: 0;
-    }
+    width: 80px;
+    height: 80px;
+    padding: 7px;
   }
 
   &__description {
-    display: flex;
-    flex-wrap: wrap;
-
-    font-family: 'Mont';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
+    @include custom-font-style('Mont', 600, 14px, 18px);
     color: $colorPrimary;
-
-    padding-left: 23px;
-
-    @include onTablet {
-      width: 176px;
-      padding-left: 31px;
-    }
 
     @include onDesktop {
       width: 336px;
-      padding-left: 31;
     }
   }
 
-  &__count {
+  &__quantity{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
-    @include onTablet {
-      padding-left: 24px;
-    }
-    @include onDesktop {
-      padding-left: 24px;
+    &_control {
+      display: flex;
+      align-items: center;
+      gap: 13px;
     }
 
     &_button {
       @include flex-center;
-      font-size: 30px;
       width: 32px;
       height: 32px;
       border: 1px solid #b4bdc4;
@@ -115,24 +82,14 @@
         }
       }
     }
+  }
 
-    &_number {
-      font-family: 'Mont';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 14px;
-      padding-right: 14px;
-      padding-left: 14px;
-    }
+  &__count {
+    @include custom-font-style('Mont', 600, 14px, 14px)
   }
 
   &__price {
-    font-family: 'Mont-Bold';
-    font-weight: 800;
-    font-size: 22px;
-
-    display: inline-flex;
-    padding-left: 110px;
+    @include custom-font-style('Mont-Bold', 800, 22px, 27px);
 
     @include onTablet {
       padding-left: 53px;
