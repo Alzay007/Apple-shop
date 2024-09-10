@@ -28,13 +28,13 @@
   @include onDesktop {
     width: 272px;
 
+    &:hover {
+      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+    }
+
     &:nth-last-child(-n + 4) {
       margin-bottom: 0;
     }
-  }
-
-  &:hover {
-    box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
   }
 
   &_logo {
@@ -96,21 +96,28 @@
   &_description {
     display: flex;
     justify-content: space-between;
+    @include custom-font-style('Mont', 400, 12px, 15px);
 
-    width: 100%;
+    p {
+      color: $colorSecondary;
+    }
 
-    font-family: 'Mont';
-    font-size: 12px;
-    line-height: 15px;
-  }
+    span {
+      color: $colorSecondary;
 
-  &_text {
-    color: $colorSecondary;
+      &:last-of-type {
+        color: $colorPrimary;
+      }
+    }
   }
 
   &_rating {
     display: flex;
     gap: 8px;
+
+    span {
+      color: $colorPrimary;
+    }
   }
 
   &_star {
@@ -119,10 +126,6 @@
 
     width: 15px;
     height: 15px;
-  }
-
-  &_value {
-    color: $colorPrimary;
   }
 
   &_checkout {
@@ -168,8 +171,8 @@
   }
 
   &_buttons {
-    margin-top: 16px;
     display: flex;
+    margin-top: 16px;
     width: 100%;
   }
 }

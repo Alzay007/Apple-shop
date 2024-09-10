@@ -3,21 +3,23 @@ import styles from '../Categories/Categories.module.scss';
 
 interface Props {
   subtitle: string;
-  imageClass: string;
+  imageSrc: string;
   path: string;
 }
 
 export const CategoriesItem: React.FC<Props> = ({
   subtitle,
-  imageClass,
+  imageSrc,
   path
 }) => {
   return (
     <div className={styles.categories__item}>
-      <h2 className={styles.categories__subtitle}>{subtitle}</h2>
-      <div className={[styles.categories__image, imageClass].join(' ')}></div>
-      <NavLink to={path}>
-        <button className={styles.categories__button}>View All</button>
+      <h3 className={styles.categories__subtitle}>{subtitle}</h3>
+      <div className={styles.categories__img_wrapper}>
+        <img src={imageSrc} alt="category_image" />
+      </div>
+      <NavLink to={path} className={styles.categories__btn}>
+        <span>View All</span>
       </NavLink>
     </div>
   );

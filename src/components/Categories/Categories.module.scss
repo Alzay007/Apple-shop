@@ -7,13 +7,9 @@
   max-width: 1136px;
   margin: 0 auto;
 
-  &__title {
-    font-family: 'Mont-Bold';
-    font-weight: 800;
-    font-size: 19px;
-    line-height: 21px;
+  h2 {
+    @include custom-font-style('Mont-Bold', 800, 19px, 21px);
     text-transform: uppercase;
-
     color: $colorPrimary;
     margin-bottom: 40px;
 
@@ -63,7 +59,6 @@
 
   &__list {
     @include flex-column;
-
     gap: 40px;
 
     @include onTablet {
@@ -74,28 +69,30 @@
 
   &__item {
     @include flex-column;
-
     gap: 24px;
   }
 
   &__subtitle {
-    font-family: 'Mont-Semi';
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 24px;
-
+    @include custom-font-style('Mont', 700, 28px, 32px);
     color: $colorPrimary;
-    margin-bottom: 4px;
 
     @include onTablet {
       font-size: 42px;
-      line-height: 26px;
+      line-height: 46px;
     }
   }
 
-  &__image {
+  &__img_wrapper {
+    display: inline-flex;
+    justify-content: center;
     height: 200px;
     width: 280px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
 
     @include onTablet {
       height: 300px;
@@ -108,60 +105,37 @@
     }
   }
 
-  &__img1 {
-    background-image: url('../../assets/images/mac.png');
-    @include background-center-contain;
+  &__btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
-    @include onDesktop {
-      @include background-center;
-      background-size: auto;
-    }
-  }
+    width: 120px;
+    padding: 10px;
 
-  &__img2 {
-    @include background-center-contain;
-    background-image: url('../../assets/images/iphone.png');
-  }
-
-  &__img3 {
-    background-image: url('../../assets/images/ipad.png');
-    @include background-center-contain;
-  }
-
-  &__img4 {
-    background-image: url('../../assets/images/watch.png');
-    @include background-center-contain;
-  }
-
-  &__button {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-
-    color: #313133;
-    min-width: 100px;
-    min-height: 20px;
-
-    background: #4FD1C5;
     background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
-    border: none;
     border-radius: 1000px;
     box-shadow: 6px 6px 6px rgba(79,209,197,.64);
     transition: all 0.3s ease-in-out 0s;
-    cursor: pointer;
-    outline: none;
-    position: relative;
-    padding: 10px;
 
-    @include onDesktop {
-      font-size: 14px;
+    span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      color: #313133;
+    }
 
-      min-width: 200px;
-      min-height: 50px;
-      border-radius: 1000px;
+    @include onTablet {
+      width: 200px;
+      height: 50px;
       box-shadow: 12px 12px 12px rgba(79,209,197,.64);
+
+      span {
+        font-size: 14px;
+      }
     }
 
     &::before {
@@ -193,7 +167,6 @@
     }
 
     &:hover {
-      color: #313133;
       transform: translateY(-6px);
     }
   }
@@ -223,20 +196,5 @@
     width: 200px;
     height: 200px;
     opacity: 0;
-  }
-}
-
-@include onMobile {
-  @keyframes ring {
-    0% {
-      width: 30px;
-      height: 30px;
-      opacity: 1;
-    }
-    100% {
-      width: 100px;
-      height: 100px;
-      opacity: 0;
-    }
   }
 }

@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Card } from '../Card';
-import './Recommended.scss';
-import { Navigation } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { useAppSelector } from 'features/hooks/hooks';
+import './Recommended.scss';
 
 interface Props {
   category: string | undefined;
@@ -18,9 +18,7 @@ export const RecommendedGoods: React.FC<Props> = ({ category }) => {
   return (
     <div className="recommended">
       <div className="recommended__nav">
-        <div>
-          <h1 className="recommended__subtitle">You may also like</h1>
-        </div>
+        <h2>You may also like</h2>
 
         <div className="recommended__buttons">
           <div className="recommended__prev"></div>

@@ -1,10 +1,15 @@
 import { CategoriesItem } from '../CategoriesItem';
 import styles from './Categories.module.scss';
 
+import macImage from '../../assets/images/mac.png';
+import iphoneImage from '../../assets/images/iphone.png';
+import ipadImage from '../../assets/images/ipad.png';
+import watchImage from '../../assets/images/watch.png';
+
 export const Categories = () => {
   return (
     <div className={styles.categories}>
-      <h1 className={styles.categories__title}>It`s time to choose...</h1>
+      <h2>It`s time to choose...</h2>
       <div className={styles.categories__arrow}>
         <span className={styles.categories__arrow_item}></span>
         <span className={styles.categories__arrow_item}></span>
@@ -14,22 +19,22 @@ export const Categories = () => {
       <div className={styles.categories__list}>
         <CategoriesItem
           subtitle="Laptops"
-          imageClass={styles.categories__img1}
+          imageSrc={macImage}
           path="/laptops"
         />
         <CategoriesItem
           subtitle="Phones"
-          imageClass={styles.categories__img2}
+          imageSrc={iphoneImage}
           path="/phones"
         />
         <CategoriesItem
           subtitle="Tablets"
-          imageClass={styles.categories__img3}
+          imageSrc={ipadImage}
           path="/tablets"
         />
         <CategoriesItem
           subtitle="Watches"
-          imageClass={styles.categories__img4}
+          imageSrc={watchImage}
           path="/watches"
         />
       </div>

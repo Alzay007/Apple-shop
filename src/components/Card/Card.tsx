@@ -65,19 +65,19 @@ export const Card: React.FC<Props> = ({
       </div>
       <div className={styles.card_characteristics}>
         <div className={styles.card_description}>
-          <span className={styles.card_text}>Rating</span>
+          <p>Rating</p>
           <div className={styles.card_rating}>
-            <span className={styles.card_value}>{rating}</span>
+            <span>{rating}</span>
             <div className={styles.card_star}></div>
           </div>
         </div>
         <div className={styles.card_description}>
-          <span className={styles.card_text}>Capacity</span>
-          <span className={styles.card_value}>{capacity}</span>
+          <span>Capacity</span>
+          <span>{capacity}</span>
         </div>
         <div className={styles.card_description}>
-          <span className={styles.card_text}>Screen</span>
-          <span className={styles.card_value}>{screen}</span>
+          <span>Screen</span>
+          <span>{screen}</span>
         </div>
       </div>
       <div className={styles.card_buttons}>
