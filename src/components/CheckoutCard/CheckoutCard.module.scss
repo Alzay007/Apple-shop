@@ -1,0 +1,39 @@
+@import 'styles/utils/vars';
+@import 'styles/utils/mixins';
+
+.checkout_card {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+
+  &__img_wrapper {
+    width: 208px;
+    margin: 0 auto;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__name {
+    @include custom-font-style('Mont', 400, 22px, 26px);
+    color: $colorPrimary;
+    margin-top: 15px;
+  }
+
+  &__count {
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin: 8px auto 5px;
+  }
+
+  &__price {
+    @include custom-font-style('Mont', 700, 22px, 140%);
+  }
+}
