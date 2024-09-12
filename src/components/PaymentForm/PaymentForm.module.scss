@@ -1,50 +1,57 @@
+@import 'styles/utils/mixins';
+@import 'styles/utils/vars';
 
 .modal {
   display: flex;
+  flex-direction: column;
   max-width: 1000px;
   height: 500px;
   margin: 0 auto;
-  border-radius: 3px;
+  border-radius: 5px;
   overflow: hidden;
   background-color: white;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+
+  @include onDesktop {
+    flex-direction: row;
+  }
 
   &_product {
-    width: 40%;
     height: 100%;
-    position: relative;
+    background-color: #96c0b7;
 
-    .round_shape {
-      width: 125%;
-      height: 150%;
-      position: absolute;
-      top: 50%;
-      left: 38%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background-color: #96c0b7;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-      z-index: 1;
+    @include onDesktop {
+      position: relative;
+      width: 40%;
+      background-color: transparent;
+      .round_shape {
+        width: 125%;
+        height: 150%;
+        position: absolute;
+        top: 50%;
+        left: 38%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: #96c0b7;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
     }
   }
 
   &_info {
-    width: 60%;
     height: 100%;
-    float: right;
-    position: relative;
+    text-align: center;
+
+    @include onDesktop {
+      width: 60%;
+      padding: 30px;
+    }
 
     .info {
-      width: 90%;
-      height: 85%;
-      position: absolute;
-      top: 50%;
-      left: 5%;
-      transform: translate(0%, -50%);
 
       h2 {
-        font-size: 2.25rem;
-        margin-left: 1rem;
+        font-size: 1.25rem;
       }
 
       form {
@@ -161,6 +168,13 @@
           &:hover {
             background-color: #b59779;
           }
+        }
+      }
+
+      @include onDesktop {
+        h2 {
+          font-size: 2.25rem;
+          margin-left: 1rem;
         }
       }
     }

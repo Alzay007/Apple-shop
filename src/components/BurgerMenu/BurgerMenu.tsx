@@ -34,7 +34,7 @@ export const BurgerMenu: React.FC<Props> = ({
           <NavLink to="/">
             <img
               src={logo}
-              className={styles.burger__img}
+              alt="logo"
               onClick={() => handlerClick(burgerMenuSelected)}
             />
           </NavLink>
@@ -43,9 +43,7 @@ export const BurgerMenu: React.FC<Props> = ({
           className={styles.burger__cross}
           onClick={() => handlerClick(burgerMenuSelected)}
         >
-          <NavLink to="#">
-            <img src={cross} className={styles.cross_icon} />
-          </NavLink>
+          <img src={cross} alt="cross" />
         </div>
       </div>
 
@@ -91,12 +89,7 @@ export const BurgerMenu: React.FC<Props> = ({
             className={styles.burger__item}
             onClick={() => handlerClick(burgerMenuSelected)}
           >
-            <NavLink
-              to="/watches"
-              className={[styles.burger__link, styles.burger__accessories].join(
-                ' '
-              )}
-            >
+            <NavLink to="/watches" className={styles.burger__link}>
               watches
             </NavLink>
           </li>
@@ -110,8 +103,7 @@ export const BurgerMenu: React.FC<Props> = ({
         >
           <img
             src={login}
-            alt="login icon"
-            className={styles.count_img}
+            alt="login"
             onClick={() => handlerClick(burgerMenuSelected)}
           />
           {isAuth && <div className={styles.burger__signIn}></div>}
@@ -126,8 +118,7 @@ export const BurgerMenu: React.FC<Props> = ({
         >
           <img
             src={bag}
-            alt=""
-            className={styles.basket_img}
+            alt="basket"
             onClick={() => handlerClick(burgerMenuSelected)}
           />
 

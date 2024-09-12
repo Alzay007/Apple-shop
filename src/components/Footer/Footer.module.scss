@@ -4,7 +4,6 @@
 .footer {
   position: absolute;
   bottom: 0;
-
   width: 100%;
   padding: 0 10px;
 
@@ -15,18 +14,13 @@
     padding: 0 30px;
   }
 
-  @include onDesktop {
-    padding: 0 152px;
-  }
-
   &__content {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    max-width: 1136px;
     height: 90px;
-    margin-bottom: 0;
+    margin: 0 auto;
 
     @include onTablet {
       height: 70px;
@@ -34,12 +28,15 @@
   }
 
   &__icon {
-    display: flex;
-    justify-items: center;
     height: 30px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%
+    }
   }
 
-  &__list {
+  &__links {
     @include flex-column;
     justify-content: center;
     gap: 12px;
@@ -55,12 +52,8 @@
   }
 
   &__item {
-    font-family: 'Mont-Bold';
+    @include custom-font-style('Mont-Bold', 700, 9px, 12px);
     color: $colorSecondary;
-    font-weight: 700;
-    font-size: 9px;
-    line-height: 10px;
-
     text-transform: uppercase;
     letter-spacing: 0.04em;
 
@@ -72,53 +65,47 @@
 
     @include onDesktop {
       font-size: 12px;
-      line-height: 11px;
+      line-height: 15px;
     }
 
     &:hover {
       color: $colorPrimary;
       text-shadow: 0px 0px 1px rgba(193, 236, 176, 0.7);
     }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 
-  &__button {
-    font-family: 'Mont';
-    color: $colorSecondary;
-    font-weight: 600;
-    font-size: 0;
-    border: none;
-
-    background: transparent;
-
+  &__btn {
     @include flex-center;
-    position: relative;
-    cursor: pointer;
+    color: $colorSecondary;
+    transition: all 0.3s ease;
 
-    transition: color 0.3s;
+    span {
+      display: none;
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #b4bdc4;
+      border-radius: 20px;
+    }
 
     @include onTablet {
-      font-size: 12px;
+      span {
+        display: inline-block;
+        margin-right: 16px;
+        @include custom-font-style('Mont', 600, 12px, 15px);
+      }
     }
 
     &:hover {
-      color: $colorBlack;
-    }
-  }
+      span {
+        color: $colorBlack;
+      }
 
-  &__arrow {
-    width: 32px;
-    height: 32px;
-    border: 1px solid #b4bdc4;
-    border-radius: 20px;
-    margin-left: 16px;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+      img {
+        box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+      }
     }
   }
 }

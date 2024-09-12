@@ -10,6 +10,7 @@
 
   &__logo {
     display: flex;
+    gap: 14px;
     margin-bottom: 28px;
 
     @include onTablet {
@@ -22,71 +23,40 @@
   }
 }
 
-.logo_home {
+.logo_home,
+.logo_vector,
+.btn_vector {
   height: 16px;
   width: 16px;
 
   @include background-center;
-  background-image: url(../../assets/icons/house.svg);
+}
 
-  margin-right: 14px;
+.logo_home {
+  background-image: url(../../assets/icons/house.svg);
 }
 
 .logo_vector {
-  height: 16px;
-  width: 16px;
-
-  @include background-center;
   background-image: url(../../assets/icons/arrowRight.svg);
-
-  margin-right: 14px;
 }
 
 .logo_link {
-  font-family: 'Mont';
-  font-size: 12px;
-  line-height: 16px;
-
+  @include custom-font-style('Mont', 700, 12px, 16px);
   color: $colorPrimary;
-  margin-right: 14px;
 
   &::first-letter {
     text-transform: uppercase;
   }
 }
 
-.logo_text {
-  font-family: 'Mont-Semi';
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-
+.logo_text,
+.btn_link {
+  @include custom-font-style('Mont', 700, 12px, 16px);
   color: $colorSecondary;
 }
 
 .btn_vector {
-  width: 16px;
-  height: 16px;
-
-  @include background-center;
   background-image: url(../../assets/icons/greyArrowLeft.svg);
-
-  margin-right: 15px;
-}
-
-.btn_link {
-  font-family: 'Mont-Semi';
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-
-  color: $colorSecondary;
-  background-color: transparent;
-  border: none;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .title {

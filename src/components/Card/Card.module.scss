@@ -136,10 +136,8 @@
 
     margin: 0 auto;
     transition: box-shadow 0.3s;
-    border: none;
 
     &:hover {
-      cursor: pointer;
       box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
     }
   }
@@ -162,7 +160,6 @@
     transition: border 0.3s;
     &:hover {
       border-color: $colorPrimary;
-      cursor: pointer;
     }
 
     &_heart {

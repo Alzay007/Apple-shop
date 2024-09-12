@@ -2,16 +2,20 @@
 @import 'styles/utils/mixins';
 
 .checkout_card {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+  padding: 20px;
   text-align: center;
 
+  @include onDesktop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 2;
+  }
+
   &__img_wrapper {
-    width: 208px;
+    width: 188px;
     margin: 0 auto;
 
     img {
@@ -19,12 +23,21 @@
       width: 100%;
       height: auto;
     }
+
+    @include onDesktop {
+      width: 208px;
+    }
   }
 
   &__name {
-    @include custom-font-style('Mont', 400, 22px, 26px);
+    @include custom-font-style('Mont', 400, 14px, 18px);
     color: $colorPrimary;
     margin-top: 15px;
+
+    @include onTablet {
+      font-size: 22px;
+      line-height: 26px;
+    }
   }
 
   &__count {
@@ -34,6 +47,12 @@
   }
 
   &__price {
-    @include custom-font-style('Mont', 700, 22px, 140%);
+    @include custom-font-style('Mont', 600, 14px, 120%);
+
+    @include onTablet {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 140%;
+    }
   }
 }

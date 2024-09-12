@@ -14,9 +14,6 @@
 
   &__top {
     @include flex-between;
-    gap: 16px;
-
-    height: 48px;
     width: 100%;
 
     background-image: $backgroundHeader;
@@ -26,11 +23,11 @@
   &__logo {
     @include flex-center;
     margin-left: 16px;
-  }
 
-  &__img {
-    width: 32px;
-    height: 32px;
+    img {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__cross {
@@ -41,6 +38,10 @@
 
     border-left: 1px solid $colorElements;
     border-right: 1px solid $colorElements;
+
+    img {
+      width: 15px;
+    }
   }
 
   &__list {
@@ -97,14 +98,26 @@
     z-index: 1;
   }
 
-  &__basket {
+  &__basket,
+  &__login {
     @include flex-center;
     position: relative;
-
-    height: 70px;
+    height: 60px;
 
     &:focus {
       border-bottom: 2px solid $colorPrimary;
+    }
+  }
+
+  &__basket {
+    img {
+      height: 38px;
+    }
+  }
+
+  &__login {
+    img {
+      height: 40px;
     }
   }
 
@@ -115,38 +128,9 @@
     right: 0;
   }
 
-  &__login {
-    @include flex-center;
-    position: relative;
-    background-color: transparent;
-
-    height: 70px;
-
-    &:focus {
-      border-bottom: 2px solid $colorPrimary;
-    }
-  }
-
   &__divider {
     width: 1px;
     height: 100%;
     background-color: $colorElements;
-  }
-}
-
-.count_img {
-  height: 40px;
-}
-
-.basket_img {
-  height: 38px;
-}
-
-.cross_icon {
-  width: 15px;
-  transition: transform 1s;
-
-  &:hover {
-    transform: rotate(180deg);
   }
 }

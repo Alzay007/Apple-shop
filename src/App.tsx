@@ -123,7 +123,6 @@ function App() {
             element={<ProductDetailPage />}
           />
           <Route path={ROUTER.support} element={<DevelopmentPage />} />
-          <Route path={ROUTER.contacts} element={<DevelopmentPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
