@@ -81,10 +81,15 @@ function App() {
   }, [isLoginModalOpen, isSignupModalOpen]);
 
   return burgerMenuSelected ? (
-    <BurgerMenu
-      setBurgerMenuSelected={setBurgerMenuSelected}
-      burgerMenuSelected={burgerMenuSelected}
-    />
+    <>
+      <BurgerMenu
+        setBurgerMenuSelected={setBurgerMenuSelected}
+        burgerMenuSelected={burgerMenuSelected}
+      />
+      {isLoginModalOpen && <LoginModal />}
+
+      {isSignupModalOpen && <SignUpModal />}
+    </>
   ) : (
     <>
       {isLoginModalOpen && <LoginModal />}

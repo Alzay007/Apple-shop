@@ -30,18 +30,29 @@
     }
   }
 
+  &__icons {
+    display: flex;
+  }
+
+  &__wishlist,
   &__cross {
     @include flex-center;
-
     width: 48px;
     height: 48px;
-
     border-left: 1px solid $colorElements;
-    border-right: 1px solid $colorElements;
+  }
+
+  &__wishlist {
+    position: relative;
 
     img {
-      width: 15px;
+      height: 28px;
+      width: 28px;
     }
+  }
+
+  &__cross {
+    border-right: 1px solid $colorElements;
   }
 
   &__list {
