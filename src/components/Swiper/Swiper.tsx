@@ -1,11 +1,9 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { NavLink } from 'react-router-dom';
-
-import image1 from 'assets/images/image1.jpg';
-import image2 from 'assets/images/image2.png';
-import image3 from 'assets/images/image3.png';
-import image4 from 'assets/images/image4.png';
+import { BASE_URL } from '../../features/reducers/thunk';
 
 import './Swiper.scss';
 
@@ -14,6 +12,21 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export const Slider = () => {
+  const [banners, setBanners] = useState<string[]>([]);
+
+  const fetchBanners = async () => {
+    try {
+      const response = await axios.get<string[]>(`${BASE_URL}/images/banners`);
+      setBanners(response.data);
+    } catch (error) {
+      console.error('Error fetching banners:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBanners();
+  }, []);
+
   return (
     <>
       <div className="banner">
@@ -39,20 +52,26 @@ export const Slider = () => {
               clickable: true
             }}
           >
-            <SwiperSlide>
-              <NavLink to="/laptops">
-                <img src={image1} alt="banner_1" className="banner__image" />
-              </NavLink>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={image2} alt="banner_2" className="banner__image" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={image3} alt="banner_3" className="banner__image" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={image4} alt="banner_4" className="banner__image" />
-            </SwiperSlide>
+            {banners.length > 0 && (
+              <SwiperSlide>
+                <NavLink to="/laptops">
+                  <img
+                    src={`${BASE_URL}/${banners[0]}`}
+                    alt="banner_1"
+                    className="banner__image"
+                  />
+                </NavLink>
+              </SwiperSlide>
+            )}
+            {banners.slice(1).map((banner, index) => (
+              <SwiperSlide key={index + 1}>
+                <img
+                  src={`${BASE_URL}/${banner}`}
+                  alt={`banner_${index + 2}`}
+                  className="banner__image"
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="next">
