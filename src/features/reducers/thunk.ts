@@ -9,7 +9,7 @@ export const fetchGoods = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(goodsSlice.actions.goodsFetching());
 
-    const response = await axios.get<Product[]>(BASE_URL + '/goods');
+    const response = await axios.get<Product[]>(BASE_URL + '/products');
 
     dispatch(goodsSlice.actions.goodsFetchingSuccess(response.data));
   } catch (e) {
@@ -19,7 +19,9 @@ export const fetchGoods = () => async (dispatch: AppDispatch) => {
 
 export async function fetchProduct(category: string, id: string) {
   try {
-    const response = await axios.get(`${BASE_URL}/${category}/${id}`);
+    const response = await axios.get(
+      `${BASE_URL}/categories/${category}/${id}`
+    );
 
     return response.data;
   } catch (error) {

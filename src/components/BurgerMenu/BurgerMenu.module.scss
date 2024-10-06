@@ -55,6 +55,12 @@
     border-right: 1px solid $colorElements;
   }
 
+  &__heart {
+    position: absolute;
+    bottom: 26px;
+    right: 4px;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;

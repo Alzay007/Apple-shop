@@ -32,6 +32,7 @@ export const BurgerMenu: React.FC<Props> = ({
   const handleWishlistClick = () => {
     if (isAuth) {
       navigate('/wishlist');
+      handlerClick(burgerMenuSelected);
     } else {
       handleOpenModal();
     }
@@ -60,7 +61,6 @@ export const BurgerMenu: React.FC<Props> = ({
               </div>
             )}
             <img src={favIcon} alt="wishlist" />
-            <div className={styles.burger__fav}></div>
           </div>
           <div
             className={styles.burger__cross}
