@@ -25,7 +25,7 @@ Users can add products to their shopping cart, view the contents, and manage qua
 
 **Frontend**: React, React Router, TypeScript, Redux Toolkit, SCSS, Material UI, Swiper.js, Axios
 
-[**Backend**](https://github.com/Alzay007/apple-store-api): TypeScript, Node.js, Express.js
+[**Backend**](https://github.com/Alzay007/apple-store-api): TypeScript, Node.js, Express.js, MongoDB
 
 **Authentication**: [Firebase](https://firebase.google.com/)
 
