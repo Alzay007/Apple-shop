@@ -5,8 +5,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { CartList } from 'components/CartList';
 import { CartCheckout } from 'components/CartCheckout';
+import { Loader } from 'components/Loader';
 import { Product } from 'types/Product';
-import { clearCart } from 'features/reducers/cartSlice';
+import {
+  clearCart,
+  saveCartToFirestore,
+  setVisibleListLoaded
+} from 'features/reducers/cartSlice';
+import { useAuth } from 'features/hooks/useAuth';
 
 import styles from './CartPage.module.scss';
 import empty from 'assets/icons/emptyCart.svg';
@@ -14,10 +20,15 @@ import arrow from 'assets/icons/greyArrowLeft.svg';
 
 export const CartPage = () => {
   const dispatch = useAppDispatch();
-  const { items, goods } = useAppSelector((state) => ({
-    items: state.cartReducer.items,
-    goods: state.goodsReducer.goods
-  }));
+  const { items, goods, isLoading, isCartLoading } = useAppSelector(
+    (state) => ({
+      items: state.cartReducer.items,
+      goods: state.goodsReducer.goods,
+      isCartLoading: state.cartReducer.isCartLoading,
+      isLoading: state.goodsReducer.isLoading
+    })
+  );
+  const { isAuth, userId } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,11 +40,25 @@ export const CartPage = () => {
     return goods.filter((phone: Product) => itemSet.has(phone.id));
   }, [items, goods]);
 
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        dispatch(setVisibleListLoaded());
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, dispatch]);
+
   const handleClearCart = useCallback(() => {
     dispatch(clearCart());
+    if (isAuth && userId) {
+      dispatch(saveCartToFirestore(userId));
+    }
   }, [dispatch]);
 
-  return (
+  return isLoading || isCartLoading ? (
+    <Loader />
+  ) : (
     <div className={styles.cart}>
       <div className={styles.title}>
         <div className={styles.title__nav} onClick={() => navigate(-1)}>
@@ -43,7 +68,7 @@ export const CartPage = () => {
         <h1 className={styles.title__headline}>Cart</h1>
       </div>
 
-      {items.length < 1 ? (
+      {visibleList.length < 1 ? (
         <div className={styles.cart__empty}>
           <img
             src={empty}

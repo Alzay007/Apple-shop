@@ -12,7 +12,7 @@ const initialState: UserState = {
   email: null,
   token: null,
   id: null,
-  name: 'John Doe',
+  name: '',
   avatar: 'https://example.com/avatar.jpg'
 };
 
@@ -24,11 +24,13 @@ export const userSlice = createSlice({
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
+      state.name = action.payload.name;
     },
     logoutUser(state) {
       state.email = null;
       state.token = null;
       state.id = null;
+      state.name = '';
     },
     setUserName(state, action) {
       state.name = action.payload;

@@ -1,16 +1,25 @@
 import { Sum } from 'types/Sum';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { loadCartFromFirestore } from './thunk';
 
 interface CartState {
   items: string[];
   isModalOpen: boolean;
+  isCartLoading: boolean;
+  error: string | null;
   sumOfItems: Sum;
+  isVisibleListLoaded: boolean;
 }
 
 const initialState: CartState = {
   items: [],
   isModalOpen: false,
-  sumOfItems: {}
+  isCartLoading: true,
+  error: null,
+  sumOfItems: {},
+  isVisibleListLoaded: false
 };
 
 const cartSlice = createSlice({
@@ -22,10 +31,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<string>) => {
       const itemId = action.payload;
-      const index = state.items.findIndex((id) => id === itemId);
-      if (index !== -1) {
-        state.items.splice(index, 1);
-      }
+      state.items = state.items.filter((id) => id !== itemId);
 
       delete state.sumOfItems[itemId];
     },
@@ -34,7 +40,6 @@ const cartSlice = createSlice({
     },
     clearItems: (state) => {
       state.items = [];
-      state.isModalOpen = true;
       state.sumOfItems = {};
     },
     clearCart: (state) => {
@@ -60,7 +65,46 @@ const cartSlice = createSlice({
       if (index > -1) {
         state.items.splice(index, 1);
       }
+    },
+    saveCartToFirestore: (state, action: PayloadAction<string>) => {
+      const userId = action.payload;
+
+      const cartDocRef = doc(db, 'carts', userId);
+
+      setDoc(
+        cartDocRef,
+        {
+          cartItems: state.items
+        },
+        { merge: true }
+      )
+        .then(() => {
+          console.log('Cart successfully saved!');
+        })
+        .catch((error) => {
+          console.error('Error saving basket:', error);
+        });
+    },
+    setVisibleListLoaded: (state) => {
+      state.isVisibleListLoaded = true;
+      state.isCartLoading = false;
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadCartFromFirestore.pending, (state) => {
+        state.isCartLoading = true;
+        state.error = null;
+      })
+      .addCase(loadCartFromFirestore.fulfilled, (state, action) => {
+        state.items = action.payload.items;
+        state.sumOfItems = action.payload.sumOfItems;
+        state.isCartLoading = false;
+      })
+      .addCase(loadCartFromFirestore.rejected, (state, action) => {
+        state.isCartLoading = false;
+        state.error = (action.payload as string) || 'Неизвестная ошибка';
+      });
   }
 });
 
@@ -73,7 +117,9 @@ export const {
   closeModal,
   decrementCount,
   incrementCount,
-  setSumOfItems
+  setSumOfItems,
+  setVisibleListLoaded,
+  saveCartToFirestore
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

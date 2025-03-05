@@ -4,7 +4,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup
 } from 'firebase/auth';
-import { getAuth } from 'firebase/auth';
+import { getAuth, AuthErrorCodes } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
 
 import { useAuth } from 'features/hooks/useAuth';
 import { useAppDispatch } from 'features/hooks/hooks';
@@ -28,18 +29,41 @@ export const LoginModal = () => {
   const handleLogin = async (email: string, password: string) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
+      const token = await user.getIdToken();
+
       dispatch(
         setUser({
           email: user.email,
-          token: user.refreshToken,
-          id: user.uid
+          token,
+          id: user.uid,
+          name: user.displayName
         })
       );
-      localStorage.setItem('user', JSON.stringify(user));
       handleCloseModal();
       dispatch(closeSnack());
-    } catch (error) {
-      setErrorMessage('Invalid user/password!');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const errorCode = (error as FirebaseError).code;
+
+        switch (errorCode) {
+          case AuthErrorCodes.INVALID_PASSWORD:
+            setErrorMessage('Incorrect password. Please try again.');
+            break;
+          case AuthErrorCodes.USER_DELETED:
+            setErrorMessage('No user found with this email.');
+            break;
+          case AuthErrorCodes.TOO_MANY_ATTEMPTS_TRY_LATER:
+            setErrorMessage('Too many attempts. Please try again later.');
+            break;
+          case AuthErrorCodes.NETWORK_REQUEST_FAILED:
+            setErrorMessage('Network error. Please check your connection.');
+            break;
+          default:
+            setErrorMessage('Login failed. Please try again.');
+        }
+      } else {
+        setErrorMessage('An unknown error occurred.');
+      }
     }
   };
 
@@ -47,19 +71,26 @@ export const LoginModal = () => {
     try {
       const provider = new GoogleAuthProvider();
       const { user } = await signInWithPopup(auth, provider);
+      const token = await user.getIdToken();
+
       dispatch(
         setUser({
           email: user.email,
-          token: user.refreshToken,
-          id: user.uid
+          token,
+          id: user.uid,
+          name: user.displayName
         })
       );
-      localStorage.setItem('user', JSON.stringify(user));
       handleCloseModal();
       dispatch(closeSnack());
-    } catch (error) {
-      console.log(error);
-      setErrorMessage('opps...something went wrong!');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(
+          error.message || 'Google sign-in failed. Please try again.'
+        );
+      } else {
+        setErrorMessage('An unknown error occurred.');
+      }
     }
   };
 

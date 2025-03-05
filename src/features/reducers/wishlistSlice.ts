@@ -1,11 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { loadWishListFromFirestore } from './thunk';
 
 interface WishlistState {
   favItems: string[];
+  isLoading: boolean;
+  error: string | null;
 }
 
 const initialState: WishlistState = {
-  favItems: []
+  favItems: [],
+  isLoading: false,
+  error: null
 };
 
 const wishlistSlice = createSlice({
@@ -27,11 +34,50 @@ const wishlistSlice = createSlice({
     },
     clearWishlist: (state) => {
       state.favItems = [];
+    },
+    saveWishListToFirestore: (state, action: PayloadAction<string>) => {
+      const userId = action.payload;
+
+      const favListDocRef = doc(db, 'favlist', userId);
+
+      setDoc(
+        favListDocRef,
+        {
+          favItems: state.favItems
+        },
+        { merge: true }
+      )
+        .then(() => {
+          console.log('Wishlist successfully saved!');
+        })
+        .catch((error) => {
+          console.error('Error saving wishlist:', error);
+        });
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadWishListFromFirestore.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loadWishListFromFirestore.fulfilled, (state, action) => {
+        state.favItems = action.payload.items;
+        state.isLoading = false;
+      })
+      .addCase(loadWishListFromFirestore.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = (action.payload as string) || 'Неизвестная ошибка';
+      });
   }
 });
 
-export const { addFavItem, addFavItems, removeFavItem, clearWishlist } =
-  wishlistSlice.actions;
+export const {
+  addFavItem,
+  addFavItems,
+  removeFavItem,
+  clearWishlist,
+  saveWishListToFirestore
+} = wishlistSlice.actions;
 
 export default wishlistSlice.reducer;

@@ -9,9 +9,11 @@ import {
   decrementCount,
   incrementCount,
   removeItem,
+  saveCartToFirestore,
   setSumOfItems
 } from 'features/reducers/cartSlice';
 import { BASE_URL } from 'features/reducers/thunk';
+import { useAuth } from 'features/hooks/useAuth';
 
 import styles from './CartItem.module.scss';
 import deleteCross from 'assets/icons/cross.svg';
@@ -29,6 +31,7 @@ export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
   const goods = JSON.parse(localStorage.getItem('id') || '{}');
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
+  const { isAuth, userId } = useAuth();
 
   const count = items.filter((item) => item === id).length;
 
@@ -38,16 +41,26 @@ export const CartItem: React.FC<Props> = ({ name, image, price, id }) => {
 
   const handleCountUp = () => {
     dispatch(incrementCount({ id, price, count }));
+    if (isAuth && userId !== null) {
+      dispatch(saveCartToFirestore(userId));
+    }
   };
 
   const handleCountDown = () => {
     dispatch(decrementCount({ id, price, count }));
+    if (isAuth && userId !== null) {
+      dispatch(saveCartToFirestore(userId));
+    }
   };
 
   const handleRemoveItem = () => {
-    goods.splice(goods.indexOf(id), 1);
-    localStorage.setItem('id', JSON.stringify(goods));
     dispatch(removeItem(id));
+    if (isAuth && userId !== null) {
+      dispatch(saveCartToFirestore(userId));
+    } else {
+      goods.splice(goods.indexOf(id), 1);
+      localStorage.setItem('id', JSON.stringify(goods));
+    }
   };
 
   return (

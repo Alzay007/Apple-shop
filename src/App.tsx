@@ -11,10 +11,15 @@ import {
   useAppDispatch,
   useAppSelector
 } from './features/hooks/hooks';
-import { fetchGoods } from './features/reducers/thunk';
+import {
+  fetchGoods,
+  loadCartFromFirestore,
+  loadWishListFromFirestore
+} from './features/reducers/thunk';
 import { addItems } from './features/reducers/cartSlice';
 import { addFavItems } from './features/reducers/wishlistSlice';
 import { setUser } from './features/reducers/userSlice';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
   CartPage,
   WishlistPage,
@@ -32,6 +37,7 @@ function App() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
   const favItems = useAppSelector(selectFavItems);
+  const isAuth = getAuth();
   const { isLoginModalOpen, isSignupModalOpen } = useAppSelector(
     (state) => state.modalReducer
   );
@@ -39,38 +45,39 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchGoods());
-    const idArray = window.localStorage.getItem('id');
-    const favIdArray = window.localStorage.getItem('wishlistId');
+    const localCart = localStorage.getItem('id');
+    const localFav = localStorage.getItem('wishlistId');
 
-    if (idArray) {
-      dispatch(addItems(JSON.parse(idArray)));
-    }
+    if (localCart && !isAuth) dispatch(addItems(JSON.parse(localCart)));
+    if (localFav && !isAuth) dispatch(addFavItems(JSON.parse(localFav)));
 
-    if (favIdArray) {
-      dispatch(addFavItems(JSON.parse(favIdArray)));
-    }
+    const unsubscribe = onAuthStateChanged(isAuth, async (user) => {
+      if (user) {
+        const token = await user.getIdToken();
 
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      const user = JSON.parse(savedUser);
+        dispatch(
+          setUser({
+            email: user.email,
+            token,
+            id: user.uid,
+            name: user.displayName
+          })
+        );
 
-      dispatch(
-        setUser({
-          email: user.email,
-          token: user.refreshToken,
-          id: user.uid
-        })
-      );
-    }
+        dispatch(loadCartFromFirestore(user.uid));
+        dispatch(loadWishListFromFirestore(user.uid));
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('id', JSON.stringify(items));
-  }, [items]);
-
-  useEffect(() => {
-    window.localStorage.setItem('wishlistId', JSON.stringify(favItems));
-  }, [favItems]);
+    if (!isAuth.currentUser) {
+      window.localStorage.setItem('id', JSON.stringify(items));
+      window.localStorage.setItem('wishlistId', JSON.stringify(favItems));
+    }
+  }, [items, favItems, isAuth]);
 
   useEffect(() => {
     if (isLoginModalOpen || isSignupModalOpen) {

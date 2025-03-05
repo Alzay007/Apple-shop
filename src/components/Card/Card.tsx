@@ -1,10 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { Product } from 'types/Product';
-
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
-import { addItem, removeItem } from 'features/reducers/cartSlice';
-import { addFavItem, removeFavItem } from 'features/reducers/wishlistSlice';
+import {
+  addItem,
+  removeItem,
+  saveCartToFirestore
+} from 'features/reducers/cartSlice';
+import {
+  addFavItem,
+  removeFavItem,
+  saveWishListToFirestore
+} from 'features/reducers/wishlistSlice';
 import { BASE_URL } from 'features/reducers/thunk';
 import { openSnackBar } from 'features/reducers/modalSlice';
 import { useAuth } from 'features/hooks/useAuth';
@@ -19,29 +26,39 @@ export const Card: React.FC<Props> = ({
   product: { name, fullPrice, capacity, screen, rating, image, id, itemId }
 }) => {
   const dispatch = useAppDispatch();
-  const { isAuth } = useAuth();
+  const { isAuth, userId } = useAuth();
 
   const { items } = useAppSelector((state) => state.cartReducer);
   const { favItems } = useAppSelector((state) => state.wishlistReducer);
 
-  const itemsSet = new Set(items);
-  const favouriteItemsSet = new Set(favItems);
-  const isCardInArray = itemsSet.has(id);
-  const isCardInFavouriteArray = favouriteItemsSet.has(id);
+  const isCardInArray = items.includes(id);
+  const isCardInFavouriteArray = favItems.includes(id);
 
   const handleSetCardInData = () => {
     if (!isCardInArray) {
       dispatch(addItem(id));
+      if (isAuth && userId !== null) {
+        dispatch(saveCartToFirestore(userId));
+      }
     } else {
       dispatch(removeItem(id));
+      if (isAuth && userId !== null) {
+        dispatch(saveCartToFirestore(userId));
+      }
     }
   };
 
   const handleSetItemInFavourite = () => {
     if (!isCardInFavouriteArray) {
       dispatch(addFavItem(id));
+      if (isAuth && userId !== null) {
+        dispatch(saveWishListToFirestore(userId));
+      }
     } else {
       dispatch(removeFavItem(id));
+      if (isAuth && userId !== null) {
+        dispatch(saveWishListToFirestore(userId));
+      }
     }
   };
 

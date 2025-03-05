@@ -3,8 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { ProductType } from 'types/ProductType';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
-import { useAuth } from 'features/hooks/useAuth';
-import { openSnackBar } from 'features/reducers/modalSlice';
 import { addItem, removeItem } from 'features/reducers/cartSlice';
 
 import styles from './ColorSize.module.scss';
@@ -47,7 +45,6 @@ export const ColorSize: React.FC<Props> = ({
   const { items } = useAppSelector((state) => state.cartReducer);
 
   const { itemId } = useParams();
-  const { isAuth } = useAuth();
   const navigate = useNavigate();
 
   const [isActiveColor = color, setIsActiveColor] = useState(color);
@@ -74,10 +71,6 @@ export const ColorSize: React.FC<Props> = ({
     } else {
       dispatch(removeItem(currentId));
     }
-  };
-
-  const handleSetOpenSnack = () => {
-    dispatch(openSnackBar());
   };
 
   const handleColorClick = (color: string) => {
@@ -161,7 +154,7 @@ export const ColorSize: React.FC<Props> = ({
             className={classNames(styles.characteristic__checkout, {
               [styles.characteristic__uncheckout]: isCardInArray
             })}
-            onClick={isAuth ? handleSetCardInData : handleSetOpenSnack}
+            onClick={handleSetCardInData}
           >
             {isCardInArray ? 'Added' : 'Add to cart'}
           </button>

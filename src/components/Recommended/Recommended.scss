@@ -50,6 +50,7 @@
     border: 1px solid $colorElements;
     background-image: url(../../assets/icons/next.svg);
     @include background-center;
+    cursor: pointer;
 
     &:hover {
       border: 1px solid #b4bdc3;

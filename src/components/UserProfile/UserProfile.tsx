@@ -10,7 +10,9 @@ import {
   EmailAuthProvider,
   getAuth,
   reauthenticateWithCredential,
-  updatePassword
+  signOut,
+  updatePassword,
+  updateProfile
 } from 'firebase/auth';
 import { Dispatch, SetStateAction, useState } from 'react';
 
@@ -21,6 +23,7 @@ import {
   setUserName
 } from 'features/reducers/userSlice';
 import { validatePassword } from 'helpers/validateFunc';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import styles from './UserProfile.module.scss';
 
@@ -68,26 +71,60 @@ export const UserProfile: React.FC<Props> = ({
   const [newPassword, setNewPassword] = useState('');
   const [isEditingPassword, setIsEditingPassword] = useState(false);
 
-  const handlePhotoInputChange = (
+  const handlePhotoInputChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      const storage = getStorage();
 
-      const imageUrl = URL.createObjectURL(file);
-      dispatch(setAvatar(imageUrl));
+      // Сохраняем файл в Firebase Storage
+      const storageRef = ref(storage, `avatars/${file.name}`);
+
+      try {
+        await uploadBytes(storageRef, file);
+
+        const photoURL = await getDownloadURL(storageRef);
+
+        const user = auth.currentUser;
+        if (user) {
+          await updateProfile(user, {
+            photoURL: photoURL
+          });
+
+          dispatch(setAvatar(photoURL));
+        }
+      } catch (error) {
+        console.log('Error uploading photo: ', error);
+        setErrorMessage('Error uploading photo');
+      }
     }
   };
 
-  const handleNameChange = (newName: string) => {
-    dispatch(setUserName(newName));
-    setIsEditingName(false);
+  const handleNameChange = async (newName: string) => {
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        await updateProfile(user, {
+          displayName: newName
+        });
+
+        dispatch(setUserName(newName));
+        setIsEditingName(false);
+      } catch (error) {
+        console.log('Error updating name: ', error);
+      }
+    }
   };
 
-  const handleLogOut = () => {
-    localStorage.removeItem('user');
-    dispatch(logoutUser());
-    handleClose();
+  const handleLogOut = async () => {
+    try {
+      await signOut(auth);
+      dispatch(logoutUser());
+      handleClose();
+    } catch (error) {
+      console.log('Error during logout: ', error);
+    }
   };
 
   const validateCurrentPassword = async (currentPassword: string) => {
