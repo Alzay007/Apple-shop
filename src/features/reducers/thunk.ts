@@ -56,7 +56,7 @@ export const loadCartFromFirestore = createAsyncThunk(
         items: data.cartItems || [],
         sumOfItems: data.sum || {}
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Ошибка загрузки корзины:', error);
       return rejectWithValue(
         error instanceof Error ? error.message : 'Неизвестная ошибка'
@@ -87,7 +87,7 @@ export const loadWishListFromFirestore = createAsyncThunk(
       return {
         items: data.favItems || []
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error loading favorites:', error);
       return rejectWithValue(
         error instanceof Error ? error.message : 'Error loading favorites'
