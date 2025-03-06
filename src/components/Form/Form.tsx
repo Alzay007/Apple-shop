@@ -9,17 +9,17 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useCallback, useMemo, useState } from 'react';
 
-import useInput from 'hooks/useInput';
-import { validateEmail, validatePassword } from 'helpers/validateFunc';
-import { useAppDispatch } from 'features/hooks/hooks';
+import useInput from '../../hooks/useInput';
+import { validateEmail, validatePassword } from '../../helpers/validateFunc';
+import { useAppDispatch } from '../../features/hooks/hooks';
 import {
   closeSignupModal,
   openSignupModal
-} from 'features/reducers/modalSlice';
-import useModalHandler from 'hooks/useModalHandler';
+} from '../../features/reducers/modalSlice';
+import useModalHandler from '../../hooks/useModalHandler';
 
 import styles from './Form.module.scss';
-import icon from 'assets/icons/google.png';
+import icon from '../../assets/icons/google.png';
 
 interface Props {
   action: string;
@@ -130,7 +130,11 @@ export const Form: React.FC<Props> = ({
             },
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                <IconButton
+                  data-testid="toggle-password"
+                  onClick={handleTogglePasswordVisibility}
+                  edge="end"
+                >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>

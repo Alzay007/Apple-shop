@@ -1,5 +1,5 @@
-@import 'styles/utils/mixins';
-@import 'styles/utils/vars';
+@use 'styles/utils/mixins' as *;
+@use 'styles/utils/vars' as *;
 
 .checkout__page {
   max-width: 1440px;

@@ -24,9 +24,14 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
-    "src"
+    "src",
+    "tests/**/*"
   ]
 }

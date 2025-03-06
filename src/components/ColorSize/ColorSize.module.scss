@@ -1,6 +1,6 @@
-@import 'styles/utils/mixins';
-@import 'styles/utils/vars';
-@import '../Card/Card.module.scss';
+@use 'styles/utils/mixins' as *;
+@use 'styles/utils/vars' as *;
+@use '../Card/Card.module.scss' as *;
 
 .ActionBlock {
   display: flex;

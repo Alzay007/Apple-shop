@@ -1,4 +1,4 @@
-@import 'styles/utils/mixins';
+@use 'styles/utils/mixins' as *;
 
 .options {
   margin-top: 32px;

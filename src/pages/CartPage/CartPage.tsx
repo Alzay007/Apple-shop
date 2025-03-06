@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch, useAppSelector } from 'features/hooks/hooks';
 import { CartList } from 'components/CartList';
 import { CartCheckout } from 'components/CartCheckout';
@@ -88,7 +88,14 @@ export const CartPage = () => {
           <Button
             className={styles.cart__clear}
             variant="contained"
-            color="secondary"
+            sx={{
+              margin: 2,
+              bgcolor: 'error.main',
+              color: 'white',
+              '&:hover': {
+                bgcolor: 'error.dark'
+              }
+            }}
             startIcon={<DeleteIcon />}
             onClick={handleClearCart}
           >
