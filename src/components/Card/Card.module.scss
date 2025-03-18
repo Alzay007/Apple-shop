@@ -41,6 +41,7 @@
     height: 130px;
     width: 223px;
     object-fit: contain;
+    aspect-ratio: 223 / 130;
 
     margin-bottom: 24px;
 
@@ -52,10 +53,6 @@
     @include onDesktop {
       height: 208px;
       width: 196px;
-    }
-
-    &:hover {
-      cursor: pointer;
     }
   }
 
@@ -149,21 +146,14 @@
   }
 
   &_wishlist {
+    @include flex-center;
     height: 40px;
     width: 40px;
     border: 1px solid #b4bdc3;
-    background-color: $colorWhite;
-    background-image: url('../../assets/icons/favourites.svg');
-    background-repeat: no-repeat;
-    background-position: center;
     margin-left: 8px;
     transition: border 0.3s;
     &:hover {
       border-color: $colorPrimary;
-    }
-
-    &_heart {
-      background-image: url('../../assets/icons/redHeart.svg');
     }
   }
 

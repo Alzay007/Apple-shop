@@ -5,7 +5,7 @@ import { validateEmail, validatePassword } from '../../helpers/validateFunc';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-const mockReducer = (state = {}, action: any) => state;
+const mockReducer = (state = {}) => state;
 const store = createStore(mockReducer);
 
 jest.mock('../../helpers/validateFunc', () => ({
@@ -123,7 +123,7 @@ describe('Form component', () => {
     );
 
     const passwordInput = screen.getByLabelText(/password/i);
-    const toggleButton = screen.getByTestId('toggle-password')
+    const toggleButton = screen.getByTestId('toggle-password');
 
     expect(passwordInput).toHaveAttribute('type', 'password');
 
